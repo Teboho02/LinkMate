@@ -7,10 +7,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Function to add a document to Firestore
     const user = {
-      username: "TN",
+      username: "aa",
       profile_name: "user.profile_name",
       password: "user.password",
-      age : "user.age"
+      age : "user.age",
+      Gender : "user.gender"
   }
   
   async function uploadInformation(user) {
@@ -19,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function() {
           username: user.username,
           profile_name: user.profile_name,
           password: user.password,
-          age : user.age
+          age : user.age,
         });
         console.log("elements inserted successfully ", docRef.id);
       } catch (e) {

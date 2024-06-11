@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="./styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js" defer></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js" defer></script>
+    <script src="./config.js" defer></script>
+    <script src="./createAccount.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <div class="form_area">
+            <p class="title">CREATE ACCOUNT</p>
+            <div class="form_group">
+                <label class="sub_title" for="username">Username</label>
+                <input placeholder="Enter your username" id="username" class="form_style" type="text">
+            </div>
+            <div class="form_group">
+                <label class="sub_title" for="profile_name">Profile Name</label>
+                <input placeholder="Enter your profile name" id="profile_name" class="form_style" type="text">
+            </div>
+            <div class="form_group">
+                <label class="sub_title" for="password">Password</label>
+                <input placeholder="Enter your password" id="password" class="form_style" type="password">
+            </div>
+            <div class="form_group">
+                <label class="sub_title" for="age">Age</label>
+                <input placeholder="Enter your age" id="age" class="form_style" type="number">
+            </div>
+            <div class="form_group">
+                <label class="sub_title" for="gender">Gender</label>
+                <select id="gender" class="form_style">
+                    <option value="">Select your gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div>
+                <button id="createACC" class="btn">CREATE ACCOUNT</button>
+                <p>Have an Account? <a class="link" href="./public/form.html">Sign in Here!</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
