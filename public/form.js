@@ -6,14 +6,22 @@ document.addEventListener("DOMContentLoaded", function() {
     console.log("working");
 
     // Function to add a document to Firestore
-    async function addDocument() {
+    const user = {
+      username: "TN",
+      profile_name: "user.profile_name",
+      password: "user.password",
+      age : "user.age"
+  }
+  
+  async function uploadInformation(user) {
       try {
         const docRef = await db.collection("users").add({
-          first: "Ada",
-          last: "Lovelace",
-          born: 1815
+          username: user.username,
+          profile_name: user.profile_name,
+          password: user.password,
+          age : user.age
         });
-        console.log("Document written with ID: ", docRef.id);
+        console.log("elements inserted successfully ", docRef.id);
       } catch (e) {
         console.error("Error adding document: ", e);
       }
@@ -32,7 +40,8 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // Call the functions
-    addDocument();
+//    addDocument();
+uploadInformation(user);
     getData();
   }
 });
