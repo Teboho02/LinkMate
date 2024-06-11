@@ -29,7 +29,6 @@ createAcc.addEventListener("click", function() {
         console.log("working");
     }
 
-    alert("clicked");
 
     const user = {
         username: username.value,
