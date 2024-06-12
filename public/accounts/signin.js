@@ -33,7 +33,7 @@ si.addEventListener("click", async () => {
     const result = await getData(username.value, password.value);
 
     if (result) {
-        window.location.href = "./public/home/home.html";
+        window.location.href = "./public/profile/profile.html";
 
     } else {
         alert("Invalid username or password");

@@ -1,21 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dating Profile</title>
     <link rel="stylesheet" href="./styles.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js" defer></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js" defer></script>
-    <script src="./config.js" defer></script>
-    <script src="./createAccount.js" defer></script>
+   
 </head>
 <body>
     <div class="container">
- 
-
-            <h1>
-                PROFILE
-            </h1>
-
+        <h2>Create Your Dating Profile</h2>
+            <div class="form_group">
+                <label for="profile_picture">Profile Picture</label>
+                <input type="file" id="profile_picture" name="profile_picture" accept="image/*" required>
+            </div>
+            <div class="form_group">
+                <label for="name">Name : </label>
+            </div>
+            <div class="form_group">
+                <label for="age">Age : </label>
+            </div>
+            <div class="form_group">
+                <label for="gender">Gender : </label>
+              
+            </div>
+            <div class="form_group">
+                <label for="likes">Likes</label>
+                <input type="text" id="likes" name="likes" placeholder="Enter your likes (e.g., music, sports)" required>
+            </div>
+            <div class="form_group">
+                <label for="age_preference">Age Preference</label>
+                <input type="range" id="age_preference" name="age_preference" min="18" max="100" value="25" oninput="ageOutput.value = age_preference.value">
+                <output id="ageOutput">25</output>
+            </div>
+            <div class="form_group">
+                <label for="bio">Short Bio</label>
+                <textarea id="bio" name="bio" rows="4" placeholder="Tell us a little about yourself" required></textarea>
+            </div>
+            <div class="form_group">
+                <label for="interests">Interests</label>
+                <input type="text" id="interests" name="interests" placeholder="Enter your interests (e.g., hiking, reading)" required>
+            </div>
+            <div class="form_group">
+                <button type="submit" class="btn">Create Profile</button>
+            </div>
     </div>
 </body>
 </html>
