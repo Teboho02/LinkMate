@@ -5,8 +5,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const profilePicture = document.getElementById("profile_picture");
     const fileInput = document.getElementById("fileInput"); 
     const updatePro = document.getElementById("updateProfile");
-    const fship = document.getElementById("friendship");
-    const rship = document.getElementById("relationship");
+
 
     const intent= {
         relationship : false,
@@ -47,6 +46,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
         uploadInformation();
 
+
+        window.location.href = "../home/home.html";
 
 
 

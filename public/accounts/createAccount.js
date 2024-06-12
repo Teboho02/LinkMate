@@ -1,5 +1,3 @@
-console.log("runs");
-
 const username = document.getElementById("username");
 const profile_name = document.getElementById("profile_name");
 const password = document.getElementById("password");
@@ -8,6 +6,8 @@ const gender = document.getElementById("gender");
 const createAcc = document.getElementById("createACC");
 
 async function uploadInformation(user) {
+    var encrypted = CryptoJS.AES.encrypt(user.password, "star").toString();
+
     try {
         const docRef = await db.collection("users").doc(user.username).set({
             username: user.username,
