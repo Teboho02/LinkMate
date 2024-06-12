@@ -4,12 +4,19 @@ document.addEventListener("DOMContentLoaded", function() {
     const genderLabel = document.getElementById("genderLabel");
     const profilePicture = document.getElementById("profile_picture");
     const fileInput = document.getElementById("fileInput"); 
-    const username = localStorage.getItem("username");
     const updatePro = document.getElementById("updateProfile");
     const bio = document.getElementById("bio");
     let profileString = "";
 
+
+    const username = localStorage.getItem("username");
+
     const myData = showInfo(username);
+    checkProfile(username);
+
+
+    
+    //check if profile exist for the user
 
 
     profilePicture.addEventListener("click", function() {
@@ -70,9 +77,29 @@ document.addEventListener("DOMContentLoaded", function() {
                 profile_picture : profileString,
                 bio : "myBio"
             });
-            console.log("elements inserted successfully ", docRef.id);
+            console.log("elements inserted successfully ");
         } catch (e) {
             console.error("Error adding document: ", e);
+        }
+    }
+
+
+    async function checkProfile(username) {
+        try {
+            const querySnapshot = await db.collection("Profile").get();
+            querySnapshot.forEach((doc) => {
+                const userData = doc.data();
+                
+                const myD = JSON.parse(JSON.stringify(doc.data()));
+                if(myD.username == username){
+                    console.log("tes");
+                    profilePicture.src = myD.profile_picture;
+                    return true;
+                }
+            }); 
+    
+        } catch (e) {
+            console.error("Error getting data: ", e);
         }
     }
 
@@ -118,7 +145,6 @@ async function showInfo(username) {
                     
                 }
 
-                console.log("myData ", myData);
                 nameLabel.innerHTML = "Name: " + myData.Name;
                 ageLabel.innerHTML = "Age: " + myData.age;
                 genderLabel.innerHTML = "Gender "+myData.gender;
@@ -134,17 +160,5 @@ async function showInfo(username) {
     }
 }
 
-async function uploadInformation(username, info) {
-    try {
-        const docRef = await db.collection("ABOUT").add({
-            username: username,
-            interests: info.interests,
-            bio : info.bio
-        });
-        console.log("elements inserted successfully ", docRef.id);
-    } catch (e) {
-        console.error("Error adding document: ", e);
-    }
-}
 
 
