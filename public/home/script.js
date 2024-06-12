@@ -33,30 +33,36 @@ async function getProfiles() {
             age.classList.add("card-title");
             age.textContent = `Age: ${jsonData.age}`;
             card.appendChild(age);
+            let l = "";
+            if(jsonData.friendship){
+                if(jsonData.relationship){
+                    l = "friendship and relationship";
+                }else{
+                    l = "friendship";
+                }   
+            }else{
+                l = " relationship";
+            }
 
             const lookingFor = document.createElement("p");
             lookingFor.classList.add("card-title");
-            lookingFor.textContent = `Looking for: ${jsonData.lookingfor}`;
+            lookingFor.textContent = `Looking for: ${l}`;
             card.appendChild(lookingFor);
+  
 
             const bio = document.createElement("p");
             bio.classList.add("card-body");
             bio.textContent = jsonData.bio;
             card.appendChild(bio);
 
-            const footer = document.createElement("p");
-            footer.classList.add("footer");
-            const writtenBy = document.createElement("span");
-            writtenBy.classList.add("by-name");
-            writtenBy.textContent = "John Doe"; 
-            const date = document.createElement("span");
-            date.classList.add("date");
-            date.textContent = "25/05/23"; // Assuming static date for now
-            footer.textContent = "Written by ";
-            footer.appendChild(writtenBy);
-            footer.textContent += " on ";
-            footer.appendChild(date);
-            card.appendChild(footer);
+            const button = document.createElement("button");
+            button.classList.add("btn");
+            button.textContent = "Like";
+            card.appendChild(button);
+
+            
+            
+
 
             profileContainer.appendChild(card);
         });
