@@ -5,7 +5,9 @@ document.addEventListener("DOMContentLoaded", function() {
     const profilePicture = document.getElementById("profile_picture");
     const fileInput = document.getElementById("fileInput"); 
     const username = localStorage.getItem("username");
-    
+    const updatePro = document.getElementById("updateProfile");
+    const bio = document.getElementById("bio");
+    let profileString = "";
 
     const myData = showInfo(username);
 
@@ -15,10 +17,27 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
 
+    updatePro.addEventListener("click", ()=>{
+
+    
+
+        uploadInformation();
+        
+
+    })
+
       
     fileInput.addEventListener("change", function() {
         const file = this.files[0];
         if (file) {
+            async function setBase64(){
+                const base64String = await  convertBase64(file);
+                profileString = base64String;
+            }
+
+            setBase64();
+            
+
             const reader = new FileReader();
             reader.onload = function(e) {
                 // Update the profile picture src with the selected image
@@ -27,6 +46,35 @@ document.addEventListener("DOMContentLoaded", function() {
             reader.readAsDataURL(file);
         }
     });
+
+    const convertBase64 = (image) => {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(image);
+    
+            reader.onload = () => {
+                resolve(reader.result);
+            };
+    
+            reader.onerror = (error) => {
+                reject(error);
+            };
+        });
+    };
+    
+
+    async function uploadInformation() {
+        try {
+            const docRef = await db.collection("Profile").doc(username).set({
+                username : username,
+                profile_picture : profileString,
+                bio : "myBio"
+            });
+            console.log("elements inserted successfully ", docRef.id);
+        } catch (e) {
+            console.error("Error adding document: ", e);
+        }
+    }
 
     
     // upProfile.addEventListener("click", ()=>{
