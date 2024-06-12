@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const profilePicture = document.getElementById("profile_picture");
     const fileInput = document.getElementById("fileInput"); 
     const updatePro = document.getElementById("updateProfile");
+    const gotohome = document.getElementById("gotohome");
 
 
     const intent= {
@@ -31,6 +32,10 @@ document.addEventListener("DOMContentLoaded", function() {
         fileInput.click();
     });
 
+    gotohome.addEventListener("click", ()=>{
+        window.location.href = "../home/home.html";
+
+    })
 
     updatePro.addEventListener("click", ()=>{
 
@@ -47,7 +52,6 @@ document.addEventListener("DOMContentLoaded", function() {
         uploadInformation();
 
 
-        window.location.href = "../home/home.html";
 
 
 
