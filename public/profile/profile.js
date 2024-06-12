@@ -37,8 +37,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
     
 
+        if (document.getElementById('relationship').checked) {
+            intent.relationship = true;
+        }
+        if (document.getElementById('friendship').checked) {
+            intent.friendship = true;
+
+        }
+
         uploadInformation();
-        intent.friendship = false;
+
+
 
 
     })
@@ -146,7 +155,6 @@ async function showInfo(username) {
 
                 nameLabel.innerHTML = "Name: " + myData.Name;
                 ageLabel.innerHTML = "Age: " + myData.age;
-                genderLabel.innerHTML = "Gender "+myData.gender;
                 return myData;
 
             }
