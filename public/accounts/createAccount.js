@@ -9,7 +9,7 @@ const createAcc = document.getElementById("createACC");
 
 async function uploadInformation(user) {
     try {
-        const docRef = await db.collection("users").add({
+        const docRef = await db.collection("users").doc(user.username).set({
             username: user.username,
             profile_name: user.profile_name,
             password: user.password,
