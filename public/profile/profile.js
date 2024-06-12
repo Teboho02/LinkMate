@@ -8,6 +8,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const username = localStorage.getItem("username");
     
 
+    //get the name age and gender and profile pic if assigned
+
     profilePictureInput.addEventListener("change", function() {
         pic.style.display = "none";
         profile_picture_preview.style.display = "";
@@ -32,4 +34,21 @@ const userDetails = ()=>{
 
 const convertBase64 = (image)=>{
 
+}
+
+async function getData(username) {
+    try {
+        const querySnapshot = await db.collection("users").get();
+        let isValidUser = false;
+        
+        querySnapshot.forEach((doc) => {
+            const userData = doc.data();
+
+
+
+        });
+
+    } catch (e) {
+        console.error("Error getting data: ", e);
+    }
 }
