@@ -2,34 +2,43 @@ document.addEventListener("DOMContentLoaded", function() {
     const nameLabel = document.getElementById("nameLabel");
     const ageLabel = document.getElementById("ageLabel");
     const genderLabel = document.getElementById("genderLabel");
-    const profilePictureInput = document.getElementById("profile_picture");
-    const pic = document.getElementById("picLabel");
-
+    const profilePicture = document.getElementById("profile_picture");
+    const fileInput = document.getElementById("fileInput"); 
     const username = localStorage.getItem("username");
     
 
-    const myData = getData(username);
+    const myData = showInfo(username);
 
+
+    profilePicture.addEventListener("click", function() {
+        fileInput.click();
+    });
 
 
       
-
-    profilePictureInput.addEventListener("change", function() {
-        pic.style.display = "none";
-        profile_picture_preview.style.display = "";
-       
-    
+    fileInput.addEventListener("change", function() {
         const file = this.files[0];
         if (file) {
             const reader = new FileReader();
             reader.onload = function(e) {
-                const profilePicturePreview = document.getElementById("profile_picture_preview");
-                profilePicturePreview.src = e.target.result;
-                profilePicturePreview.style.display = "block"; // Show the <img> tag
+                // Update the profile picture src with the selected image
+                profilePicture.src = e.target.result;
             }
             reader.readAsDataURL(file);
         }
     });
+
+    
+    // upProfile.addEventListener("click", ()=>{
+    //     const mock = {
+    //     username: username,
+    //     interests: "xt",
+    //     bio : "43"
+    //     }
+    //     uploadInformation(username, mock);
+    // })
+
+
 });
 
 
@@ -41,7 +50,7 @@ const convertBase64 = (image)=>{
 
 }
 
-async function getData(username) {
+async function showInfo(username) {
     try {
         const querySnapshot = await db.collection("users").get();
 
@@ -76,3 +85,18 @@ async function getData(username) {
         console.error("Error getting data: ", e);
     }
 }
+
+async function uploadInformation(username, info) {
+    try {
+        const docRef = await db.collection("ABOUT").add({
+            username: username,
+            interests: info.interests,
+            bio : info.bio
+        });
+        console.log("elements inserted successfully ", docRef.id);
+    } catch (e) {
+        console.error("Error adding document: ", e);
+    }
+}
+
+

@@ -14,14 +14,11 @@
 <body>
     <div class="container">
         <h2>Create Your Profile</h2>
-
-        <div class="form_group">
-            <label for="profile_picture_preview">Profile Picture</label>
-            <img id="profile_picture_preview" src="#" alt="Profile Picture Preview" style="max-width: 90px; max-height: 90px; display: none;">
-        </div>
         <div class="form_group" id="picLabel">
             <label for="profile_picture" style="display: none;">Profile Picture</label>
-            <img id="profilepic"src="../asserts/3135715.png"style="max-width: 50px; max-height: 50px">
+            <img id="profile_picture" src="../asserts/3135715.png"style="max-width: 50px; max-height: 50px">
+            <input type="file" id="fileInput" style="display: none;">
+
         </div>
        
         <div class="form_group">
@@ -38,22 +35,24 @@
             <label for="likes">Likes</label>
             <input type="text" id="likes" name="likes" placeholder="Enter your likes (e.g., music, sports)" required>
         </div>
-        <div class="form_group">
-            <label for="minage">Minimum Age</label>
-            <input id="minage" type="number"> 
-            <label for="maxage">Maximum Age</label>
-            <input id="maxage" type="number"> 
-        </div>
+ 
         <div class="form_group">
             <label for="bio">Short Bio</label>
             <textarea id="bio" name="bio" rows="4" placeholder="Tell us a little about yourself" required></textarea>
         </div>
+
+        <div class="form_group">
+
+            <text>Looking for</text>
+            <input type="checkbox" name="Frienship">
+        </div>
+
         <div class="form_group">
             <label for="interests">Interests</label>
             <input type="text" id="interests" name="interests" placeholder="Enter your interests (e.g., hiking, reading)" required>
         </div>
         <div class="form_group">
-            <button type="submit" class="btn">Create Profile</button>
+            <button type="submit" class="btn" id="updateProfile">Create Profile</button>
         </div>
     </div>
 </body>
