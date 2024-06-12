@@ -8,11 +8,16 @@ document.addEventListener("DOMContentLoaded", function() {
     const username = localStorage.getItem("username");
     
 
-    //get the name age and gender and profile pic if assigned
+    const myData = getData(username);
+
+
+
+      
 
     profilePictureInput.addEventListener("change", function() {
         pic.style.display = "none";
         profile_picture_preview.style.display = "";
+       
     
         const file = this.files[0];
         if (file) {
@@ -39,11 +44,30 @@ const convertBase64 = (image)=>{
 async function getData(username) {
     try {
         const querySnapshot = await db.collection("users").get();
-        let isValidUser = false;
-        
+
         querySnapshot.forEach((doc) => {
             const userData = doc.data();
+         
 
+            let datax= JSON.parse(JSON.stringify(doc.data()));
+
+
+            if(datax.username == username){
+                
+                const myData = {
+                    Name : datax.profile_name,
+                    age : datax.age,
+                    gender : datax.gender,
+                    
+                }
+
+                console.log("myData ", myData);
+                nameLabel.innerHTML = "Name: " + myData.Name;
+                ageLabel.innerHTML = "Age: " + myData.age;
+                genderLabel.innerHTML = "Gender "+myData.gender;
+                return myData;
+
+            }
 
 
         });

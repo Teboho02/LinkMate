@@ -42,7 +42,7 @@ async function update(){
             age: "xyt",
             gender: "xyt"
         });
-        console.log("elements inserted successfully ", docRef.id);
+        console.log("successfully updated ", docRef.id);
     } catch (e) {
         console.error("Error adding document: ", e);
     }

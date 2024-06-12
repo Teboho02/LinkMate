@@ -17,6 +17,8 @@ async function uploadInformation(user) {
             gender: user.gender
         });
         console.log("elements inserted successfully ", docRef.id);
+        alert("account created successfully");
+        window.location.href = "../index.html";
     } catch (e) {
         console.error("Error adding document: ", e);
     }
