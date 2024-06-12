@@ -33,6 +33,7 @@ si.addEventListener("click", async () => {
     const result = await getData(username.value, password.value);
 
     if (result) {
+        localStorage.setItem("username",username.value);
         window.location.href = "./public/profile/profile.html";
 
     } else {
