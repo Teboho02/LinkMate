@@ -5,6 +5,15 @@ document.addEventListener("DOMContentLoaded", function() {
     const profilePicture = document.getElementById("profile_picture");
     const fileInput = document.getElementById("fileInput"); 
     const updatePro = document.getElementById("updateProfile");
+    const fship = document.getElementById("friendship");
+    const rship = document.getElementById("relationship");
+
+    const intent= {
+        relationship : false,
+        friendship : true
+
+    }
+
     const bio = document.getElementById("bio");
     let profileString = "";
 
@@ -29,7 +38,8 @@ document.addEventListener("DOMContentLoaded", function() {
     
 
         uploadInformation();
-        
+        intent.friendship = false;
+
 
     })
 
@@ -75,7 +85,9 @@ document.addEventListener("DOMContentLoaded", function() {
             const docRef = await db.collection("Profile").doc(username).set({
                 username : username,
                 profile_picture : profileString,
-                bio : "myBio"
+                bio : "myBio",
+                friendship : intent.friendship,
+                relationship : intent.relationship
             });
             console.log("elements inserted successfully ");
         } catch (e) {
@@ -93,8 +105,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 const myD = JSON.parse(JSON.stringify(doc.data()));
                 if(myD.username == username){
                     console.log("tes");
-                    profilePicture.src = myD.profile_picture;
-                    return true;
+                    if(myD.profile_picture.length>1000){
+                        profilePicture.src = myD.profile_picture;
+                        return true;
+                    }
+                  
                 }
             }); 
     
@@ -103,27 +118,11 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    
-    // upProfile.addEventListener("click", ()=>{
-    //     const mock = {
-    //     username: username,
-    //     interests: "xt",
-    //     bio : "43"
-    //     }
-    //     uploadInformation(username, mock);
-    // })
-
 
 });
 
 
-const userDetails = ()=>{
 
-}
-
-const convertBase64 = (image)=>{
-
-}
 
 async function showInfo(username) {
     try {
