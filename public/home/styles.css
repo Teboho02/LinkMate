@@ -9,6 +9,7 @@
 }
 
 .card {
+  margin-top: 20px;
   padding: 20px;
   width: 330px;
   min-height: 370px;
