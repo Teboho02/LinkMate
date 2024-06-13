@@ -2,10 +2,12 @@ const name = document.getElementById("name");
 const age = document.getElementById("age");
 const bio = document.getElementById("bio");
 const lookingfor = document.getElementById("looking");
-
 const profileContainer = document.getElementById("profileContainer");
 
 async function getProfiles() {
+
+    const myUsername = localStorage.getItem("username");
+
     try {
         const querySnapshot = await db.collection("Profile").get();
         
@@ -24,45 +26,55 @@ async function getProfiles() {
             cardImage.appendChild(image);
             card.appendChild(cardImage);
 
-            const name = document.createElement("p");
-            name.classList.add("card-title");
-            name.textContent = jsonData.username;
-            card.appendChild(name);
+            const nameElement = document.createElement("p");
+            nameElement.classList.add("card-title");
+            nameElement.textContent = jsonData.username;
+            card.appendChild(nameElement);
 
-            const age = document.createElement("p");
-            age.classList.add("card-title");
-            age.textContent = `Age: ${jsonData.age}`;
-            card.appendChild(age);
-            let l = "";
-            if(jsonData.friendship){
-                if(jsonData.relationship){
-                    l = "friendship and relationship";
-                }else{
-                    l = "friendship";
-                }   
-            }else{
-                l = " relationship";
+            const ageElement = document.createElement("p");
+            ageElement.classList.add("card-title");
+            ageElement.textContent = `Age: ${jsonData.age}`;
+            card.appendChild(ageElement);
+
+            let lookingForText = "";
+            if (jsonData.friendship) {
+                if (jsonData.relationship) {
+                    lookingForText = "Friendship and Relationship";
+                } else {
+                    lookingForText = "Friendship";
+                }
+            } else {
+                lookingForText = "Relationship";
             }
 
-            const lookingFor = document.createElement("p");
-            lookingFor.classList.add("card-title");
-            lookingFor.textContent = `Looking for: ${l}`;
-            card.appendChild(lookingFor);
-  
+            const lookingForElement = document.createElement("p");
+            lookingForElement.classList.add("card-title");
+            lookingForElement.textContent = `Looking for: ${lookingForText}`;
+            card.appendChild(lookingForElement);
 
-            const bio = document.createElement("p");
-            bio.classList.add("card-body");
-            bio.textContent = jsonData.bio;
-            card.appendChild(bio);
+            const bioElement = document.createElement("p");
+            bioElement.classList.add("card-body");
+            bioElement.textContent = jsonData.bio;
+            card.appendChild(bioElement);
 
             const button = document.createElement("button");
             button.classList.add("btn");
             button.textContent = "Like";
+
+            //send a message request
+            button.addEventListener("click", function() {
+
+                alert(`Liked ${jsonData.username}`);
+                const likedusername = jsonData.username;
+
+              
+                uploadInformation(myUsername,likedusername);
+
+
+
+
+            });
             card.appendChild(button);
-
-            
-            
-
 
             profileContainer.appendChild(card);
         });
@@ -73,3 +85,17 @@ async function getProfiles() {
 }
 
 getProfiles();
+
+async function uploadInformation(user1,user2) {
+    try {
+        const docRef = await db.collection("chatRequest").doc(user1+user2).set({
+                accepted : false,
+                from : user1,
+                to : user2,
+                date : "1 marcj"
+        });
+        console.log("elements inserted successfully ");
+    } catch (e) {
+        console.error("Error adding document: ", e);
+    }
+}
