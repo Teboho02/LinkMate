@@ -15,8 +15,8 @@
   min-height: 370px;
   border-radius: 20px;
   background: #e8e8e8;
-  box-shadow: 5px 5px 6px #dadada,
-               -5px -5px 6px #f6f6f6;
+  box-shadow: 5px 5px 6px #f10303,
+               -5px -5px 6px #063cec;
   transition: 0.4s;
 }
 
@@ -63,6 +63,7 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  min-width: 100px;
 }
 .btn:hover {
   background-color: #0056b3;
