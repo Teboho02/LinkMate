@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     messageDiv.className = "info";
                     messageDiv.textContent = messagesx[i].message;
                     messageDiv.style.color = "white";
-                    if(messagesx[i].From == localStorage.getItem("username")){
+                    if(messagesx[i].From != localStorage.getItem("username")){
                         messageDiv.style.backgroundColor = "green";
                     }   
                     chatMessages.appendChild(messageDiv);

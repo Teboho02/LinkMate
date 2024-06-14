@@ -6,15 +6,16 @@ document.addEventListener("DOMContentLoaded", function() {
     const fileInput = document.getElementById("fileInput"); 
     const updatePro = document.getElementById("updateProfile");
     const gotohome = document.getElementById("gotohome");
+    const bio = document.getElementById("bio");
+    const st = document.getElementById("inter");
 
-
+    
     const intent= {
         relationship : false,
-        friendship : true
-
+        friendship : true,
+        something_else : ""
     }
 
-    const bio = document.getElementById("bio");
     let profileString = "";
 
 
@@ -27,7 +28,6 @@ document.addEventListener("DOMContentLoaded", function() {
     
     //check if profile exist for the user
 
-
     profilePicture.addEventListener("click", function() {
         fileInput.click();
     });
@@ -39,7 +39,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
     updatePro.addEventListener("click", ()=>{
 
+
+        console.log(bio.value);
     
+        alert(bio.value);
 
         if (document.getElementById('relationship').checked) {
             intent.relationship = true;
@@ -99,9 +102,11 @@ document.addEventListener("DOMContentLoaded", function() {
             const docRef = await db.collection("Profile").doc(username).set({
                 username : username,
                 profile_picture : profileString,
-                bio : "myBio",
+                bio : bio.value,
                 friendship : intent.friendship,
-                relationship : intent.relationship
+                relationship : intent.relationship,
+                interests : st.value
+                
             });
             console.log("elements inserted successfully ");
         } catch (e) {
@@ -117,10 +122,17 @@ document.addEventListener("DOMContentLoaded", function() {
                 const userData = doc.data();
                 
                 const myD = JSON.parse(JSON.stringify(doc.data()));
+                //check if I have already updated the profile
                 if(myD.username == username){
                     console.log("tes");
+                    bio.textContent = myD.bio;
+                    st.textContent =myD.interests;
+                    console.log(myD);   
+                    console.log(myD.interests);
                     if(myD.profile_picture.length>1000){
                         profilePicture.src = myD.profile_picture;
+                        
+
                         return true;
                     }
                   
