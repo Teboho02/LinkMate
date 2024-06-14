@@ -62,10 +62,14 @@ document.addEventListener("DOMContentLoaded", function() {
                 const len = messagesx.length;
 
                 for(let i = 0; i < len; i++){
-
+                    //change color to blue
                     const messageDiv = document.createElement("div");
                     messageDiv.className = "info";
                     messageDiv.textContent = messagesx[i].message;
+                    messageDiv.style.color = "white";
+                    if(messagesx[i].From == localStorage.getItem("username")){
+                        messageDiv.style.backgroundColor = "green";
+                    }   
                     chatMessages.appendChild(messageDiv);
 
                 }

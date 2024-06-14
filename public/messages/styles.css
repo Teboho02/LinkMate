@@ -319,3 +319,26 @@ body {
   .info__close path {
     fill: #fff;
   }
+
+/* Style for the container */
+.header-container {
+  display: flex;       /* Use flexbox layout */
+  align-items: center; /* Vertically center items */
+}
+
+/* Style for the h2 element */
+.header-container h2 {
+  margin: 10;            /* Remove default margin */
+  padding-right: 10px;  /* Add some space between h2 and img */
+}
+
+/* Style for the img element */
+.header-container img {
+  max-width: 40px;     
+  max-height: 40px;    
+  margin: 20px;
+}
+
+.name{
+  margin-left: 10px;
+}
