@@ -22,8 +22,8 @@ async function getData() {
 function show_messages(arr) {   
   const messageContainer = document.getElementById("message-container");
 
-  //create a new array that will only show the last messages
 
+  //show only the last message
   messageArray = [];
   messageArray.push(arr[arr.length - 1]);
   let isIn = false;
@@ -32,7 +32,7 @@ function show_messages(arr) {
     for (let j = 0; j < messageArray.length; j++) {
       if (arr[i].From === messageArray[j].From) {
         isIn = true;
-        break; // No need to continue checking once found
+        break; 
       }
     }
     if (!isIn) {

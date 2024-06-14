@@ -2,6 +2,12 @@ document.addEventListener("DOMContentLoaded", function() {
     const chatMessages = document.getElementById("chatMessages");
     const messageInput = document.getElementById("messageInput");
     const sendButton = document.getElementById("sendButton");
+    const chatwith = document.getElementById("chatwith");
+
+
+    console.log(localStorage.getItem("messaageFrom"));
+
+    chatwith.textContent =localStorage.getItem("messaageFrom");
 
     getMessagesAndDisplay();    
 
@@ -55,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 const len = messagesx.length;
 
-                for(let i = 0; i < len; i++){
+                for(let i = 0; i < len; i=i+2){
 
                     const messageDiv = document.createElement("div");
                     messageDiv.className = "info";
