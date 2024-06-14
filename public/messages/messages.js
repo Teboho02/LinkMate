@@ -3,14 +3,16 @@ document.addEventListener("DOMContentLoaded", function() {
     const messageInput = document.getElementById("messageInput");
     const sendButton = document.getElementById("sendButton");
     const chatwith = document.getElementById("chatwith");
+    const prof = document.getElementById("prof");
 
 
     console.log(localStorage.getItem("messaageFrom"));
 
     chatwith.textContent =localStorage.getItem("messaageFrom");
 
-    getMessagesAndDisplay();    
 
+
+    getUserInfoById(localStorage.getItem("messaageFrom"));
 
 
     sendButton.addEventListener("click", function() {
@@ -87,6 +89,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     }
 
+
     function sendMessage(myMessage, user){
         let now = new Date();
 
@@ -113,6 +116,33 @@ document.addEventListener("DOMContentLoaded", function() {
         uploadInformation(myMessage);
         
     }
+
+
+
+        async function getUserInfoById(docId) {
+            try {
+                const docRef = db.collection("userInfo").doc("q");
+                const doc = await docRef.get();
+                
+                if (doc.exists) {
+                    const userData = doc.data();
+                    console.log("what is this");
+                //    console.log(`${doc.id} => ${JSON.stringify(userData)}`);
+                prof.src = JSON.parse(JSON.stringify(userData)).profile_picture;
+                } else {
+                    console.log("No such document!");
+                }   
+            } catch (e) {
+                console.error("Error getting document: ", e);
+            }
+        }
+        
+        // Example usage:
+        getUserInfoById(localStorage.getItem("messaageFrom"));
+        
+
+
+    
 });
 
 

@@ -16,12 +16,21 @@ async function uploadInformation(user) {
             age: user.age,
             gender: user.gender
         });
-        console.log("elements inserted successfully ", docRef.id);
+        console.log("elements inserted successfully ");
         alert("account created successfully");
-        window.location.href = "../index.html";
     } catch (e) {
         console.error("Error adding document: ", e);
     }
+
+    try {
+        const docRef = await db.collection("userInfo").doc(user.username).set({
+            profile_name: user.profile_name,
+            picture : ""
+        });
+    } catch (e) {
+        console.error("Error adding document: ", e);
+    }
+
 }
 
 createAcc.addEventListener("click", function() {

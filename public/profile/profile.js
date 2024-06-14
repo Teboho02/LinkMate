@@ -112,6 +112,18 @@ document.addEventListener("DOMContentLoaded", function() {
         } catch (e) {
             console.error("Error adding document: ", e);
         }
+
+        
+    try {
+        console.log(username)
+        const docRef = await db.collection("userInfo").doc("q").update({
+            profile_picture : profileString
+        });
+        console.log("successfully updated "  );
+    } catch (e) {
+        console.error("Error adding document: ", e);
+    }
+
     }
 
 
@@ -127,8 +139,13 @@ document.addEventListener("DOMContentLoaded", function() {
                     console.log("tes");
                     bio.textContent = myD.bio;
                     st.textContent =myD.interests;
-                    console.log(myD);   
-                    console.log(myD.interests);
+                    if(myD.relationship){
+                        document.getElementById('relationship').checked = true;
+                    }
+                    if(myD.friendship){
+                        document.getElementById('friendship').checked = true;
+
+                    }
                     if(myD.profile_picture.length>1000){
                         profilePicture.src = myD.profile_picture;
                         
