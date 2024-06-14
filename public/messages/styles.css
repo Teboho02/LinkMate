@@ -191,3 +191,93 @@ body {
   .active {
     background-color: #04AA6D;
   }
+
+
+  .cardx {
+    width: fit-content;
+    background-color: #f2f3f7;
+    border-radius: 0.75em;
+    cursor: pointer;
+    margin: 20px;
+    transition: ease 0.2s;
+    box-shadow: 1em 1em 1em #d8dae0b1, -0.75em -0.75em 1em #ffffff;
+    border: 1.5px solid #f2f3f7;
+  }
+  
+  .cardx:hover {
+    background-color: #d3ddf1;
+    border: 1.5px solid #1677ff;
+  }
+  
+  .containerx {
+    margin-top: 1.25em;
+    margin-bottom: 1.375em;
+    margin-left: 1.375em;
+    margin-right: 2em;
+    display: flex;
+    flex-direction: row;
+    gap: 0.75em;
+  }
+  
+  .status-indx {
+    width: 0.625em;
+    height: 0.625em;
+    background-color: #ff0000;
+    margin: 0.375em 0;
+    border-radius: 0.5em;
+  }
+  
+  .text-wrapx {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25em;
+    color: #333;
+  }
+  
+  .timex {
+    font-size: 0.875em;
+    color: #777;
+  }
+  
+  .text-linkx {
+    font-weight: 500;
+    text-decoration: none;
+    color: black;
+  }
+  
+  .button-wrapx {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    align-items: center;
+  }
+  
+  .secondary-ctax {
+    background-color: transparent;
+    border: none;
+    font-size: 15px;
+    font-weight: 400;
+    color: #666;
+    cursor: pointer;
+  }
+  
+  .primary-ctax {
+    font-size: 15px;
+    background-color: transparent;
+    font-weight: 600;
+    color: #1677ff;
+    border: none;
+    border-radius: 1.5em;
+    cursor: pointer;
+  }
+  
+  buttonx:hover {
+    text-decoration: underline;
+  }
+  
+  .rightx {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875em;
+  }
+  
