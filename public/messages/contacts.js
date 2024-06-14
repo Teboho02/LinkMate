@@ -1,4 +1,3 @@
-
 async function getData() {
   let col_messages = [];
 
@@ -9,8 +8,6 @@ async function getData() {
 
       let res = JSON.stringify(doc.data());
       let jsonRes = JSON.parse(res);
-      console.log("username: ", localStorage.getItem("username"));
-      console.log(jsonRes);
       if (jsonRes.To == localStorage.getItem("username")) {
         col_messages.push(jsonRes);
       }
@@ -22,9 +19,26 @@ async function getData() {
   show_messages(col_messages);
 }
 
-function show_messages(messageArray) {
+function show_messages(arr) {   
   const messageContainer = document.getElementById("message-container");
 
+  //create a new array that will only show the last messages
+
+  messageArray = [];
+  messageArray.push(arr[arr.length - 1]);
+  let isIn = false;
+  for (let i = arr.length - 2; i >= 0; i--) {
+    let isIn = false;
+    for (let j = 0; j < messageArray.length; j++) {
+      if (arr[i].From === messageArray[j].From) {
+        isIn = true;
+        break; // No need to continue checking once found
+      }
+    }
+    if (!isIn) {
+      messageArray.push(arr[i]); 
+    }
+  }
   messageContainer.innerHTML = "";
 
   for (let i = 0; i < messageArray.length; i++) {
@@ -95,6 +109,7 @@ function show_messages(messageArray) {
     button.id = "readMessage";
     button.textContent = "open message";
     button.addEventListener("click", () => {
+      localStorage.setItem("messaageFrom", message.From);
       openMessage(messageArray);
     });
 
