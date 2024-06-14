@@ -1,51 +1,38 @@
 <!DOCTYPE html>
-
+<html lang="en">
 <head>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with John Doe</title>
     <link rel="stylesheet" href="styles.css">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js" defer></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js" defer></script>
     <script src="../config.js" defer></script>
     <script src="./messages.js" defer></script>
-    
-
-
+    <script src="./app.js" defer></script> <!-- External JavaScript file -->
 </head>
-
 <body>
-
-   
     <div class="container">
-
         <ul>
             <li><a href="../home/home.html">Home</a></li>
             <li><a href="../messages/messages.html">Messages</a></li>
             <li><a href="../profile/profile.html">Profile</a></li>
-          </ul>
-          
+        </ul>
         
         <div class="chat-container">
             <div class="chat-header">
                 <h2>Chat with John Doe</h2>
             </div>
+            
             <div class="chat-messages" id="chatMessages">
                 <!-- Messages will be dynamically added here -->
-
-
-
-                
             </div>
+            
             <div class="chat-input">
                 <input type="text" id="messageInput" placeholder="Type a message">
                 <button id="sendButton">Send</button>
             </div>
         </div>
-        <script src="script.js"></script>
-
- 
     </div>
-
-
 </body>
+</html>
