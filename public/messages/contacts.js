@@ -60,10 +60,16 @@ function show_messages(arr) {
     const statusDiv = document.createElement("div");
     statusDiv.classList.add("status-indx");
 
-    if (message.read == 1) {
-      statusDiv.style.backgroundColor = "green";
-    }
+    try{
 
+        if (message.read == 1) {
+            statusDiv.style.backgroundColor = "green";
+          }
+      
+    }catch(e){
+        console.log(e);
+    }
+    
     // Append status indicator to left div
     leftDiv.appendChild(statusDiv);
 

@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 const len = messagesx.length;
 
-                for(let i = 0; i < len; i=i+2){
+                for(let i = 0; i < len; i++){
 
                     const messageDiv = document.createElement("div");
                     messageDiv.className = "info";
