@@ -17,6 +17,8 @@ document.addEventListener("DOMContentLoaded", function () {
   getMessagesAndDisplay();
 
 
+
+
   sendButton.addEventListener("click", function () {
     const messageText = messageInput.value.trim();
 

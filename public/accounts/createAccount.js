@@ -8,9 +8,17 @@ const createAcc = document.getElementById("createACC");
 async function uploadInformation(user) {
     var encrypted = CryptoJS.AES.encrypt(user.password, "star").toString();
 
-    //check if the username doesnt exist first
+    //check if the username
 
     try {
+
+        const usernameSnapshot = await db.collection("users").doc(user.username).get();
+        if (usernameSnapshot.exists) {
+          console.log("Username already exists");
+          return;
+        }
+
+
         const docRef = await db.collection("users").doc(user.username).set({
             username: user.username,
             profile_name: user.profile_name,
