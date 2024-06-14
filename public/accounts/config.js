@@ -1,4 +1,3 @@
-// Your Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyDFBwd8yFSrkKvZikexNWb8VMRozAe1mEk",
     authDomain: "find-my-patner.firebaseapp.com",

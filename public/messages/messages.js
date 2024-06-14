@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
   getUserInfoById(localStorage.getItem("messaageFrom"));
   getMessagesAndDisplay();
 
+
   sendButton.addEventListener("click", function () {
     const messageText = messageInput.value.trim();
 
@@ -33,6 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  
   function getMessagesAndDisplay() {
     let messagesx = [];
     console.log("running");
@@ -158,6 +160,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (doc.exists) {
         const userData = doc.data();
+        chatwith.textContent = JSON.parse(JSON.stringify(userData)).profile_name;
         prof.src = JSON.parse(JSON.stringify(userData)).profile_picture;
       } else {
         console.log("No such document!");
