@@ -194,7 +194,7 @@ body {
 
 
   .cardx {
-    width: fit-content;
+    width: 95%;
     background-color: #f2f3f7;
     border-radius: 0.75em;
     cursor: pointer;
