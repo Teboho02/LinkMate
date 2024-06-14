@@ -115,8 +115,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         
     try {
-        console.log(username)
-        const docRef = await db.collection("userInfo").doc("q").update({
+        const docRef = await db.collection("userInfo").doc(localStorage.getItem("username")).update({
             profile_picture : profileString
         });
         console.log("successfully updated "  );

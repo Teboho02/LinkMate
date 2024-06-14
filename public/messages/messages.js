@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     getUserInfoById(localStorage.getItem("messaageFrom"));
-
+    getMessagesAndDisplay();
 
     sendButton.addEventListener("click", function() {
         const messageText = messageInput.value.trim();
@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         async function getUserInfoById(docId) {
             try {
-                const docRef = db.collection("userInfo").doc("q");
+                const docRef = db.collection("userInfo").doc(localStorage.getItem("messaageFrom"));
                 const doc = await docRef.get();
                 
                 if (doc.exists) {
