@@ -3,6 +3,22 @@ const age = document.getElementById("age");
 const bio = document.getElementById("bio");
 const lookingfor = document.getElementById("looking");
 const profileContainer = document.getElementById("profileContainer");
+const preferredGender = document.getElementById('genderSelect');
+const lookingFor = document.getElementById('lookingForSelect');
+const minAge = document.getElementById('minAge');
+const maxAge = document.getElementById('maxAge');
+const filterButton = document.getElementById('filterButton');
+
+
+filterButton.addEventListener("click", ()=>{
+
+    
+
+
+    getProfiles();
+
+})
+    
 
 async function getProfiles() {
     const myUsername = localStorage.getItem("username");
@@ -78,7 +94,6 @@ async function getProfiles() {
     }
 }
 
-getProfiles();
 
 async function uploadInformation(user1, user2) {
     try {
