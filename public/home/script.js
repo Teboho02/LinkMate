@@ -10,7 +10,7 @@ const maxAge = document.getElementById('maxAge');
 const filterButton = document.getElementById('filterButton');
 
 
-filterButton.addEventListener("click", ()=>{
+filterButton.addEventListener("click", async ()=>{
 
 
 
@@ -18,15 +18,16 @@ filterButton.addEventListener("click", ()=>{
     const maximumAge = maxAge.value;
     const gender =  preferredGender.value;
     const intent = lookingFor.value;
-
+    
 
 
     profileContainer.innerHTML = "";
     createNavigationMenu();
 
 
-    const res = (findusers(minimumage, maximumAge, gender, intent));
+    const res =  await (findusers(minimumage, maximumAge, gender, intent));
 
+    console.log(res);
 
     getProfiles();
 
@@ -167,15 +168,20 @@ async function findusers(minimumage, maximumAge, gender, intent) {
         querySnapshot.forEach((doc) => {
             const userData = doc.data();
 
-            if(doc.data.gender == "Male"){
-                results.push(userData);
+            //console.log("sa ",  userData.gender);
+            //console.log(gender);
+            if(userData.gender == gender){
+                results.push(userData.username);
             }
-            else if(gender == "All"){
-                results.push(userData);
+            else if(gender == "all"){
+                results.push(userData.username);
             }
 
-            return results;
+            console.log(results);
         }); 
+
+        return results;
+
 
     } catch (e) {
         console.error("Error getting data: ", e);
