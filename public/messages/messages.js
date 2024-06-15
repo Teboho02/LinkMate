@@ -39,6 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
   function getMessagesAndDisplay() {
     let messagesx = [];
+    
     console.log("running");
     async function getMessages() {
       try {
@@ -48,7 +49,6 @@ document.addEventListener("DOMContentLoaded", function () {
         querySnapshot.forEach((doc) => {
           const userData = JSON.parse(JSON.stringify(doc.data()));
 
-          //    messaageFrom
           if (
             userData.To == localStorage.getItem("username") &&
             userData.From == localStorage.getItem("messaageFrom")
@@ -67,7 +67,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const len = messagesx.length;
 
-
+        const acepMessage = messagesx[0];
+        messagesx.splice(0,1);
         messagesx.sort((a, b) => {
             let dateA = parseCustomTimeFormat(a.time[0]);
             let dateB = parseCustomTimeFormat(b.time[0]);
@@ -77,8 +78,15 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log(messagesx);
         
 
+        const messageDiv = document.createElement("div");
+        messageDiv.className = "info";
+        messageDiv.textContent = acepMessage.message;
+        messageDiv.style.color = "white";
+        messageDiv.style.backgroundColor = "yellow";
+        chatMessages.appendChild(messageDiv);
 
-        for (let i = 0; i < len; i++) {
+
+        for (let i = 0; i < len-1; i++) {
           //change color to blue
           const messageDiv = document.createElement("div");
           messageDiv.className = "info";
