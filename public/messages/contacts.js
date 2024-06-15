@@ -16,6 +16,9 @@ async function getData() {
     console.error("Error getting data: ", e);
   }
 
+
+
+
   show_messages(col_messages);
 }
 
@@ -40,6 +43,13 @@ function show_messages(arr) {
     }
   }
   messageContainer.innerHTML = "";
+
+  messageArray.sort((a, b) => {
+    let dateA = parseCustomTimeFormat(a.time[0]);
+    let dateB = parseCustomTimeFormat(b.time[0]);
+    return dateB   - dateA; 
+});
+//sada
 
   for (let i = 0; i < messageArray.length; i++) {
     const message = messageArray[i];
@@ -148,3 +158,23 @@ function openMessage(messages) {
 }
 
 getData();
+
+
+function parseCustomTimeFormat(timeString) {
+  let parts = timeString.split(' ');
+  let month = parts[0]; // Should be 'Jun'
+  let day = parseInt(parts[1], 10); // Day of the month
+  let year = parseInt(parts[2], 10); // Year
+  let time = parts[3].split(':'); // Split time into hours, minutes, seconds
+  let hour = parseInt(time[0], 10); // Hours
+  let minute = parseInt(time[1], 10); // Minutes
+  let second = parseInt(time[2], 10); // Seconds
+
+
+  return new Date(year, getMonthIndex(month), day, hour, minute, second);
+}
+
+function getMonthIndex(month) {
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  return months.indexOf(month);
+}
