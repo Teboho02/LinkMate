@@ -12,10 +12,26 @@ const filterButton = document.getElementById('filterButton');
 
 filterButton.addEventListener("click", ()=>{
 
-    
+
+
+    const minimumage = minAge.value;
+    const maximumAge = maxAge.value;
+    const gender =  preferredGender.value;
+    const intent = lookingFor.value;
+
+
+
+    profileContainer.innerHTML = "";
+    createNavigationMenu();
+
+
+    const res = (findusers(minimumage, maximumAge, gender, intent));
 
 
     getProfiles();
+
+
+
 
 })
     
@@ -43,7 +59,6 @@ async function getProfiles() {
             cardImage.appendChild(image);
             card.appendChild(cardImage);
 
-            console.log(jsonData);
             const nameElement = document.createElement("p");
             nameElement.classList.add("card-title");
             nameElement.textContent = userAge.profile_name;
@@ -121,16 +136,49 @@ async function getAge(userId) {
     }
 }
 
-// async function profileName(userId) {
-//     try {
-//         const doc = await db.collection("users").doc(userId).get();
-//         if (doc.exists) {
-//             return doc.data().profile_name;
-//         } else {
-//             return "Unknown";
-//         }
-//     } catch (e) {
-//         return "Error";
-//     }
-// }
+function createNavigationMenu() {
+    const navMenu = document.createElement("ul");
+
+    const links = [
+        { href: "../home/home.html", text: "Home" },
+        { href: "../messages/contacts.html", text: "Messages" },
+        { href: "../profile/profile.html", text: "Profile" },
+        { href: "../requests/request.html", text: "Chat Requests" }
+    ];
+
+    links.forEach(link => {
+        const listItem = document.createElement("li");
+        const anchor = document.createElement("a");
+        anchor.href = link.href;
+        anchor.textContent = link.text;
+        listItem.appendChild(anchor);
+        navMenu.appendChild(listItem);
+    });
+
+    profileContainer.appendChild(navMenu);
+}
+
+
+async function findusers(minimumage, maximumAge, gender, intent) {
+    try {
+        const results = [];
+        const querySnapshot = await db.collection("users").get();
+        let isValidUser = false;
+        querySnapshot.forEach((doc) => {
+            const userData = doc.data();
+
+            if(doc.data.gender == "Male"){
+                results.push(userData);
+            }
+            else if(gender == "All"){
+                results.push(userData);
+            }
+
+            return results;
+        }); 
+
+    } catch (e) {
+        console.error("Error getting data: ", e);
+    }
+}
 
