@@ -10,34 +10,34 @@ const maxAge = document.getElementById('maxAge');
 const filterButton = document.getElementById('filterButton');
 
 
-filterButton.addEventListener("click", async ()=>{
+filterButton.addEventListener("click", async () => {
 
 
 
     const minimumage = minAge.value;
     const maximumAge = maxAge.value;
-    const gender =  preferredGender.value;
+    const gender = preferredGender.value;
     const intent = lookingFor.value;
-    
+
 
 
     profileContainer.innerHTML = "";
     createNavigationMenu();
 
 
-    const res =  await (findusers(minimumage, maximumAge, gender, intent));
+    const res = await (findusers(minimumage, maximumAge, gender, intent));
 
     console.log(res);
 
-    getProfiles();
+    getProfiles(res);
 
 
 
 
 })
-    
 
-async function getProfiles() {
+
+async function getProfiles(valid_names) {
     const myUsername = localStorage.getItem("username");
 
     try {
@@ -47,63 +47,67 @@ async function getProfiles() {
             const userId = doc.id;
             const userAge = await getAge(userId);
 
+            console.log(valid_names.includes(jsonData.username));
+            console.log(jsonData.username);
+            if (valid_names.includes(jsonData.username)) {
 
-            const card = document.createElement("div");
-            card.classList.add("card");
+                const card = document.createElement("div");
+                card.classList.add("card");
 
-            const cardImage = document.createElement("div");
-            cardImage.classList.add("card-image");
-            const image = document.createElement("img");
-            image.src = jsonData.profile_picture;
-            image.style.maxWidth = "100%";
-            image.style.maxHeight = "100%";
-            cardImage.appendChild(image);
-            card.appendChild(cardImage);
+                const cardImage = document.createElement("div");
+                cardImage.classList.add("card-image");
+                const image = document.createElement("img");
+                image.src = jsonData.profile_picture;
+                image.style.maxWidth = "100%";
+                image.style.maxHeight = "100%";
+                cardImage.appendChild(image);
+                card.appendChild(cardImage);
 
-            const nameElement = document.createElement("p");
-            nameElement.classList.add("card-title");
-            nameElement.textContent = userAge.profile_name;
-            card.appendChild(nameElement);
+                const nameElement = document.createElement("p");
+                nameElement.classList.add("card-title");
+                nameElement.textContent = userAge.profile_name;
+                card.appendChild(nameElement);
 
-            const ageElement = document.createElement("p");
-            ageElement.classList.add("card-title");
-            ageElement.textContent = `Age: ${userAge.age}`;
-            card.appendChild(ageElement);
+                const ageElement = document.createElement("p");
+                ageElement.classList.add("card-title");
+                ageElement.textContent = `Age: ${userAge.age}`;
+                card.appendChild(ageElement);
 
-            let lookingForText = "";
-            if (jsonData.friendship) {
-                if (jsonData.relationship) {
-                    lookingForText = "Friendship and Relationship";
+                let lookingForText = "";
+                if (jsonData.friendship) {
+                    if (jsonData.relationship) {
+                        lookingForText = "Friendship and Relationship";
+                    } else {
+                        lookingForText = "Friendship";
+                    }
                 } else {
-                    lookingForText = "Friendship";
+                    lookingForText = "Relationship";
                 }
-            } else {
-                lookingForText = "Relationship";
+
+
+                const lookingForElement = document.createElement("p");
+                lookingForElement.classList.add("card-title");
+                lookingForElement.textContent = `Looking for: ${lookingForText}`;
+                card.appendChild(lookingForElement);
+
+                const bioElement = document.createElement("p");
+                bioElement.classList.add("card-body");
+                bioElement.textContent = jsonData.bio;
+                card.appendChild(bioElement);
+
+                const button = document.createElement("button");
+                button.classList.add("btn");
+                button.textContent = "Invite to chat";
+
+                // Send a message request
+                button.addEventListener("click", function () {
+                    const likedUsername = jsonData.username;
+                    uploadInformation(myUsername, likedUsername);
+                });
+                card.appendChild(button);
+
+                profileContainer.appendChild(card);
             }
-
-
-            const lookingForElement = document.createElement("p");
-            lookingForElement.classList.add("card-title");
-            lookingForElement.textContent = `Looking for: ${lookingForText}`;
-            card.appendChild(lookingForElement);
-
-            const bioElement = document.createElement("p");
-            bioElement.classList.add("card-body");
-            bioElement.textContent = jsonData.bio;
-            card.appendChild(bioElement);
-
-            const button = document.createElement("button");
-            button.classList.add("btn");
-            button.textContent = "Invite to chat";
-
-            // Send a message request
-            button.addEventListener("click", function() {
-                const likedUsername = jsonData.username;
-                uploadInformation(myUsername, likedUsername);
-            });
-            card.appendChild(button);
-
-            profileContainer.appendChild(card);
         }
     } catch (e) {
         console.error("Error getting data: ", e);
@@ -170,15 +174,14 @@ async function findusers(minimumage, maximumAge, gender, intent) {
 
             //console.log("sa ",  userData.gender);
             //console.log(gender);
-            if(userData.gender == gender){
+            if (userData.gender == gender) {
                 results.push(userData.username);
             }
-            else if(gender == "all"){
+            else if (gender == "all") {
                 results.push(userData.username);
             }
 
-            console.log(results);
-        }); 
+        });
 
         return results;
 
