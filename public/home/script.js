@@ -9,6 +9,22 @@ const minAge = document.getElementById('minAge');
 const maxAge = document.getElementById('maxAge');
 const filterButton = document.getElementById('filterButton');
 
+function encryptData(plainText, secretKey) {
+    const encryptedData = CryptoJS.AES.encrypt(plainText, secretKey).toString();
+    return encryptedData;
+}
+
+function decryptData(encryptedData, secretKey) {
+    const bytes = CryptoJS.AES.decrypt(encryptedData, secretKey);
+    const decryptedText = bytes.toString(CryptoJS.enc.Utf8);
+    return decryptedText;
+}
+
+console.log("runni ", encryptData("32", "32"));
+
+
+
+
 
 filterButton.addEventListener("click", async () => {
 
@@ -42,7 +58,23 @@ async function getProfiles(valid_names) {
 
     try {
         const querySnapshot = await db.collection("Profile").get();
-        for (const doc of querySnapshot.docs) {
+
+        // Step 1: Extract documents into an array
+        const docsArray = querySnapshot.docs.slice(); // `.slice()` to create a shallow copy
+
+        // Step 2: Shuffle the array using Fisher-Yates shuffle algorithm
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        const shuffledDocs = shuffle(docsArray);
+
+        // Step 3: Iterate over the shuffled array
+        for (const doc of shuffledDocs) {
             const jsonData = doc.data();
             const userId = doc.id;
             const userAge = await getAge(userId);
@@ -62,6 +94,8 @@ async function getProfiles(valid_names) {
                 image.style.maxHeight = "100%";
                 cardImage.appendChild(image);
                 card.appendChild(cardImage);
+
+
 
                 const nameElement = document.createElement("p");
                 nameElement.classList.add("card-title");
@@ -83,7 +117,6 @@ async function getProfiles(valid_names) {
                 } else {
                     lookingForText = "Relationship";
                 }
-
 
                 const lookingForElement = document.createElement("p");
                 lookingForElement.classList.add("card-title");
@@ -113,6 +146,7 @@ async function getProfiles(valid_names) {
         console.error("Error getting data: ", e);
     }
 }
+
 
 
 async function uploadInformation(user1, user2) {
@@ -172,18 +206,16 @@ async function findusers(minimumage, maximumAge, gender, intent) {
         querySnapshot.forEach((doc) => {
             const userData = doc.data();
 
-            //console.log("sa ",  userData.gender);
-            console.log(parseInt(userData.age));
-            console.log("is this : ",parseInt(userData.age) >= minimumage && parseInt(userData.age) <= maximumAge);
-            if (userData.gender == gender && parseInt(userData.age) >= minimumage && parseInt(userData.age) <= maximumAge) {
+            //console.log("sa ",.gender);
+            let goodage = parseInt(userData.age) >= minimumage && parseInt(userData.age) <= maximumAge;
+            if (userData.gender == gender && goodage) {
                 results.push(userData.username);
             }
-            else if (gender == "all" && parseInt(userData.age) >= minimumage && parseInt(userData.age) <= maximumAge) {
+            else if (gender == "all" && goodage) {
                 results.push(userData.username);
             }
-
         });
-
+        
         return results;
 
 

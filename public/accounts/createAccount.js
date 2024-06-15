@@ -21,7 +21,7 @@ async function uploadInformation(user) {
         const docRef = await db.collection("users").doc(user.username).set({
             username: user.username,
             profile_name: user.profile_name,
-            password: user.password,
+            password: encryptData(user.password),
             age: user.age,
             gender: user.gender
         });
@@ -60,3 +60,8 @@ createAcc.addEventListener("click", function() {
 
     uploadInformation(user);
 });
+
+  function encryptData(plainText) {
+    const encryptedData = CryptoJS.AES.encrypt(plainText, "stillLovekamo").toString();
+    return encryptedData;
+}

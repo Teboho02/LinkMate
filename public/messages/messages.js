@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
   sendButton.addEventListener("click", function () {
     const messageText = messageInput.value.trim();
 
-    if (messageText !== "" ) {
+    if (messageText !== "") {
       const messageDiv = document.createElement("div");
       messageDiv.className = "info";
       messageDiv.textContent = messageText;
@@ -36,10 +36,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  
+
   function getMessagesAndDisplay() {
     let messagesx = [];
-    
+
     async function getMessages() {
       try {
 
@@ -65,18 +65,18 @@ document.addEventListener("DOMContentLoaded", function () {
         const len = messagesx.length;
 
         const acepMessage = messagesx[0];
-        messagesx.splice(0,1);
+        messagesx.splice(0, 1);
 
 
 
-          messagesx.sort((a, b) => {
-            let dateA = parseCustomTimeFormat(a.time[0]);
-            let dateB = parseCustomTimeFormat(b.time[0]);
-            return dateA - dateB; // Sort in descending order
+        messagesx.sort((a, b) => {
+          let dateA = parseCustomTimeFormat(a.time[0]);
+          let dateB = parseCustomTimeFormat(b.time[0]);
+          return dateA - dateB; // Sort in descending order
         });
 
-      
-        
+
+
 
         const messageDiv = document.createElement("div");
         messageDiv.className = "info";
@@ -86,25 +86,23 @@ document.addEventListener("DOMContentLoaded", function () {
         chatMessages.appendChild(messageDiv);
 
 
-       // console.log("print debbugin",messagesx[0].message);
 
-        for (let i = 0; i < len-1; i++) {
-          //change color to blue
-          if(messagesx[i].message!=="chat request accepted"){
-            console.log("print debbugin",messagesx[i].message);
+        for (let i = 0; i < len - 1; i++) {
+          if (messagesx[i].message !== "chat request accepted") {
+            console.log("print debbugin", messagesx[i].message);
 
-          
 
-          const messageDiv = document.createElement("div");
-          messageDiv.className = "info";
-          messageDiv.textContent = messagesx[i].message;
-          messageDiv.style.color = "white";
-          if (messagesx[i].From != localStorage.getItem("username")) {
-            messageDiv.style.backgroundColor = "green";
+
+            const messageDiv = document.createElement("div");
+            messageDiv.className = "info";
+            messageDiv.textContent = messagesx[i].message;
+            messageDiv.style.color = "white";
+            if (messagesx[i].From != localStorage.getItem("username")) {
+              messageDiv.style.backgroundColor = "green";
+            }
+            chatMessages.appendChild(messageDiv);
+
           }
-          chatMessages.appendChild(messageDiv);
-        
-        }
         }
       } catch (e) {
         console.error("Error getting data: ", e);
@@ -194,7 +192,7 @@ document.addEventListener("DOMContentLoaded", function () {
   getUserInfoById(localStorage.getItem("messaageFrom"));
 });
 
-async function getMessages() {  
+async function getMessages() {
   try {
     const querySnapshot = await db.collection("Messages").get();
     let isValidUser = false;
@@ -212,22 +210,22 @@ async function getMessages() {
 
 
 function parseCustomTimeFormat(timeString) {
-    let parts = timeString.split(' ');
-    let month = parts[0]; // Should be 'Jun'
-    let day = parseInt(parts[1], 10); // Day of the month
-    let year = parseInt(parts[2], 10); // Year
-    let time = parts[3].split(':'); // Split time into hours, minutes, seconds
-    let hour = parseInt(time[0], 10); // Hours
-    let minute = parseInt(time[1], 10); // Minutes
-    let second = parseInt(time[2], 10); // Seconds
+  let parts = timeString.split(' ');
+  let month = parts[0]; // Should be 'Jun'
+  let day = parseInt(parts[1], 10); // Day of the month
+  let year = parseInt(parts[2], 10); // Year
+  let time = parts[3].split(':'); // Split time into hours, minutes, seconds
+  let hour = parseInt(time[0], 10); // Hours
+  let minute = parseInt(time[1], 10); // Minutes
+  let second = parseInt(time[2], 10); // Seconds
 
 
-    return new Date(year, getMonthIndex(month), day, hour, minute, second);
+  return new Date(year, getMonthIndex(month), day, hour, minute, second);
 }
 
 function getMonthIndex(month) {
-    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    return months.indexOf(month);
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  return months.indexOf(month);
 }
 
 
