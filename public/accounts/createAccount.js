@@ -8,7 +8,6 @@ const createAcc = document.getElementById("createACC");
 async function uploadInformation(user) {
     var encrypted = CryptoJS.AES.encrypt(user.password, "star").toString();
 
-    //check if the username
 
     try {
 

@@ -59,16 +59,17 @@ async function getProfiles() {
 
             const button = document.createElement("button");
             button.classList.add("btn");
-            button.textContent = "Like";
+            button.textContent = "Invite to chat";
 
             //send a message request
             button.addEventListener("click", function() {
 
                 alert(`Liked ${jsonData.username}`);
                 const likedusername = jsonData.username;
+                
 
               
-                uploadInformation(myUsername,likedusername);
+                uploadInformation(myUsername,jsonData.username);
 
 
 
@@ -86,11 +87,11 @@ async function getProfiles() {
 
 getProfiles();
 
-async function uploadInformation(user1,user2) {
+async function uploadInformation(user1,user2) { 
     try {
-        const docRef = await db.collection("chatRequest").doc(user1+user2).set({
-                accepted : false,
-                from : user1,
+        const docRef = await db.collection("chatInvite").add({
+                Accepted : false,
+                from : localStorage.getItem("username"),
                 to : user2,
                 date : "1 marcj"
         });
