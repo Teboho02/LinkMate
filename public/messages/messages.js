@@ -40,10 +40,8 @@ document.addEventListener("DOMContentLoaded", function () {
   function getMessagesAndDisplay() {
     let messagesx = [];
     
-    console.log("running");
     async function getMessages() {
       try {
-        console.log("running 2");
 
         const querySnapshot = await db.collection("Message").get();
         querySnapshot.forEach((doc) => {
@@ -63,19 +61,26 @@ document.addEventListener("DOMContentLoaded", function () {
           }
         });
 
-        console.log("xt :", messagesx);
 
         const len = messagesx.length;
 
         const acepMessage = messagesx[0];
         messagesx.splice(0,1);
-        messagesx.sort((a, b) => {
+
+
+        try{
+
+          messagesx.sort((a, b) => {
             let dateA = parseCustomTimeFormat(a.time[0]);
             let dateB = parseCustomTimeFormat(b.time[0]);
             return dateA - dateB; // Sort in descending order
         });
 
-        console.log(messagesx);
+        }catch(e){
+          console.log(e);
+        }
+
+      
         
 
         const messageDiv = document.createElement("div");
@@ -172,7 +177,8 @@ document.addEventListener("DOMContentLoaded", function () {
       if (doc.exists) {
         const userData = doc.data();
         chatwith.textContent = JSON.parse(JSON.stringify(userData)).profile_name;
-        prof.src = JSON.parse(JSON.stringify(userData)).profile_picture;
+        console.log("xya", JSON.parse(JSON.stringify(userData)));
+      //  prof.src = JSON.parse(JSON.stringify(userData)).profile_picture;
       } else {
         console.log("No such document!");
       }

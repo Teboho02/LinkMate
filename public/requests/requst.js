@@ -22,6 +22,8 @@ async function getData() {
       // Loop through each request data
       req.forEach((userData) => {
         // Create card elements
+
+        if(!userData.Accepted){
         const card = document.createElement("div");
         card.classList.add("card"); // Add class 'card'
 
@@ -45,6 +47,8 @@ async function getData() {
             //update the status   
             update(id);
             //create a message
+
+        
             createfirstMessage(userData.from);  
            
           });
@@ -83,6 +87,11 @@ async function getData() {
         buttonReject.id = "reject";
         buttonReject.textContent = "Reject";
 
+        buttonReject.addEventListener("click" , ()=>{
+
+
+        })
+
         // Append elements to card
         card.appendChild(img);
         card.appendChild(label);
@@ -91,7 +100,9 @@ async function getData() {
 
         // Append card to container
         cardContainer.appendChild(card);
+      }
       });
+
     }
   } catch (e) {
     console.error("Error getting data: ", e);
