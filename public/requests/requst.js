@@ -74,7 +74,7 @@ async function getData() {
                   From : localStorage.getItem("username"),
                   To : to,
                   message : "chat request accepted",
-                  time : "Jun 15 2024, 02:57:50"
+                  time : ["Jun 15 2024, 02:57:50"]
                 });
                 console.log("elements inserted successfully ", docRef.id);
             } catch (e) {   

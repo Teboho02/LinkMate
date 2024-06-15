@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
   sendButton.addEventListener("click", function () {
     const messageText = messageInput.value.trim();
 
-    if (messageText !== "") {
+    if (messageText !== "" ) {
       const messageDiv = document.createElement("div");
       messageDiv.className = "info";
       messageDiv.textContent = messageText;
@@ -68,7 +68,6 @@ document.addEventListener("DOMContentLoaded", function () {
         messagesx.splice(0,1);
 
 
-        try{
 
           messagesx.sort((a, b) => {
             let dateA = parseCustomTimeFormat(a.time[0]);
@@ -76,24 +75,26 @@ document.addEventListener("DOMContentLoaded", function () {
             return dateA - dateB; // Sort in descending order
         });
 
-        }catch(e){
-          console.log(e);
-        }
-
       
         
 
         const messageDiv = document.createElement("div");
         messageDiv.className = "info";
-        messageDiv.textContent = acepMessage.message;
-        messageDiv.style.color = "white";
-        messageDiv.style.backgroundColor = "yellow";
-        messageDiv.style.visibility = "false";
+        messageDiv.textContent = " ";
+        messageDiv.style.color = "black";
+        messageDiv.style.backgroundColor = "white";
         chatMessages.appendChild(messageDiv);
 
 
+       // console.log("print debbugin",messagesx[0].message);
+
         for (let i = 0; i < len-1; i++) {
           //change color to blue
+          if(messagesx[i].message!=="chat request accepted"){
+            console.log("print debbugin",messagesx[i].message);
+
+          
+
           const messageDiv = document.createElement("div");
           messageDiv.className = "info";
           messageDiv.textContent = messagesx[i].message;
@@ -102,6 +103,8 @@ document.addEventListener("DOMContentLoaded", function () {
             messageDiv.style.backgroundColor = "green";
           }
           chatMessages.appendChild(messageDiv);
+        
+        }
         }
       } catch (e) {
         console.error("Error getting data: ", e);
@@ -178,7 +181,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const userData = doc.data();
         chatwith.textContent = JSON.parse(JSON.stringify(userData)).profile_name;
         console.log("xya", JSON.parse(JSON.stringify(userData)));
-      //  prof.src = JSON.parse(JSON.stringify(userData)).profile_picture;
+        prof.src = JSON.parse(JSON.stringify(userData)).profile_picture;
       } else {
         console.log("No such document!");
       }

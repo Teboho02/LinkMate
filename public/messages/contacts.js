@@ -8,7 +8,7 @@ async function getData() {
 
       let res = JSON.stringify(doc.data());
       let jsonRes = JSON.parse(res);
-      if (jsonRes.To == localStorage.getItem("username")) {
+      if (jsonRes.To == localStorage.getItem("username") || jsonRes.From == localStorage.getItem("username")) {
         col_messages.push(jsonRes);
       }
     });
@@ -44,6 +44,7 @@ function show_messages(arr) {
   for (let i = 0; i < messageArray.length; i++) {
     const message = messageArray[i];
 
+    console.log("message array", messageArray);
     // Create the card div
     const cardDiv = document.createElement("div");
     cardDiv.classList.add("cardx");
@@ -70,6 +71,7 @@ function show_messages(arr) {
         console.log(e);
     }
     
+    console.log(message);
     // Append status indicator to left div
     leftDiv.appendChild(statusDiv);
 
