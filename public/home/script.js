@@ -173,11 +173,12 @@ async function findusers(minimumage, maximumAge, gender, intent) {
             const userData = doc.data();
 
             //console.log("sa ",  userData.gender);
-            //console.log(gender);
-            if (userData.gender == gender) {
+            console.log(parseInt(userData.age));
+            console.log("is this : ",parseInt(userData.age) >= minimumage && parseInt(userData.age) <= maximumAge);
+            if (userData.gender == gender && parseInt(userData.age) >= minimumage && parseInt(userData.age) <= maximumAge) {
                 results.push(userData.username);
             }
-            else if (gender == "all") {
+            else if (gender == "all" && parseInt(userData.age) >= minimumage && parseInt(userData.age) <= maximumAge) {
                 results.push(userData.username);
             }
 
