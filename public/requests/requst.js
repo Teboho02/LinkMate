@@ -69,11 +69,11 @@ async function getData() {
                 const docRef = await db.collection("Message").add({
                   From : localStorage.getItem("username"),
                   To : to,
-                  Message : "chat request accepted",
+                  message : "chat request accepted",
                   time : "Jun 15 2024, 02:57:50"
                 });
                 console.log("elements inserted successfully ", docRef.id);
-            } catch (e) {
+            } catch (e) {   
                 console.error("Error adding document: ", e);
             }
         }

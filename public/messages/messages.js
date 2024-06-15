@@ -83,6 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
         messageDiv.textContent = acepMessage.message;
         messageDiv.style.color = "white";
         messageDiv.style.backgroundColor = "yellow";
+        messageDiv.style.visibility = "false";
         chatMessages.appendChild(messageDiv);
 
 
