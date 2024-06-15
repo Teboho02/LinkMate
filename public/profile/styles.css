@@ -1,5 +1,5 @@
 .container {
-    max-width: 600px;
+    max-width: 450px;
     margin: auto;
     padding: 20px;
     border: 1px solid #ccc;
@@ -37,3 +37,33 @@
     background-color: #0056b3;
 }
 
+ul {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #002efa;
+  }
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  /* Change the link color to #111 (black) on hover */
+  li a:hover {
+    background-color: #111;
+  }
+  
+  .active {
+    background-color: #04AA6D;
+  }

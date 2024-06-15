@@ -5,14 +5,15 @@ const lookingfor = document.getElementById("looking");
 const profileContainer = document.getElementById("profileContainer");
 
 async function getProfiles() {
-
     const myUsername = localStorage.getItem("username");
 
     try {
         const querySnapshot = await db.collection("Profile").get();
-        
-        querySnapshot.forEach((doc) => {
+        for (const doc of querySnapshot.docs) {
             const jsonData = doc.data();
+            const userId = doc.id;
+            const userAge = await getAge(userId);
+
 
             const card = document.createElement("div");
             card.classList.add("card");
@@ -26,14 +27,15 @@ async function getProfiles() {
             cardImage.appendChild(image);
             card.appendChild(cardImage);
 
+            console.log(jsonData);
             const nameElement = document.createElement("p");
             nameElement.classList.add("card-title");
-            nameElement.textContent = jsonData.username;
+            nameElement.textContent = userAge.profile_name;
             card.appendChild(nameElement);
 
             const ageElement = document.createElement("p");
             ageElement.classList.add("card-title");
-            ageElement.textContent = `Age: ${jsonData.age}`;
+            ageElement.textContent = `Age: ${userAge.age}`;
             card.appendChild(ageElement);
 
             let lookingForText = "";
@@ -46,6 +48,7 @@ async function getProfiles() {
             } else {
                 lookingForText = "Relationship";
             }
+
 
             const lookingForElement = document.createElement("p");
             lookingForElement.classList.add("card-title");
@@ -61,25 +64,15 @@ async function getProfiles() {
             button.classList.add("btn");
             button.textContent = "Invite to chat";
 
-            //send a message request
+            // Send a message request
             button.addEventListener("click", function() {
-
-                alert(`Liked ${jsonData.username}`);
-                const likedusername = jsonData.username;
-                
-
-              
-                uploadInformation(myUsername,jsonData.username);
-
-
-
-
+                const likedUsername = jsonData.username;
+                uploadInformation(myUsername, likedUsername);
             });
             card.appendChild(button);
 
             profileContainer.appendChild(card);
-        });
-
+        }
     } catch (e) {
         console.error("Error getting data: ", e);
     }
@@ -87,16 +80,42 @@ async function getProfiles() {
 
 getProfiles();
 
-async function uploadInformation(user1,user2) { 
+async function uploadInformation(user1, user2) {
     try {
         const docRef = await db.collection("chatInvite").add({
-                Accepted : false,
-                from : localStorage.getItem("username"),
-                to : user2,
-                date : "1 marcj"
+            Accepted: false,
+            from: user1,
+            to: user2,
+            date: new Date().toISOString()
         });
-        console.log("elements inserted successfully ");
     } catch (e) {
         console.error("Error adding document: ", e);
     }
 }
+
+async function getAge(userId) {
+    try {
+        const doc = await db.collection("users").doc(userId).get();
+        if (doc.exists) {
+            return doc.data();
+        } else {
+            return "Unknown";
+        }
+    } catch (e) {
+        return "Error";
+    }
+}
+
+// async function profileName(userId) {
+//     try {
+//         const doc = await db.collection("users").doc(userId).get();
+//         if (doc.exists) {
+//             return doc.data().profile_name;
+//         } else {
+//             return "Unknown";
+//         }
+//     } catch (e) {
+//         return "Error";
+//     }
+// }
+
