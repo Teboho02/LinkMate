@@ -43,7 +43,6 @@ filterButton.addEventListener("click", async () => {
 
     const res = await (findusers(minimumage, maximumAge, gender, intent));
 
-    console.log(res);
 
     getProfiles(res);
 
@@ -73,6 +72,9 @@ async function getProfiles(valid_names) {
 
         const shuffledDocs = shuffle(docsArray);
 
+        
+    
+
         // Step 3: Iterate over the shuffled array
         for (const doc of shuffledDocs) {
             const jsonData = doc.data();
@@ -81,7 +83,7 @@ async function getProfiles(valid_names) {
 
             console.log(valid_names.includes(jsonData.username));
             console.log(jsonData.username);
-            if (valid_names.includes(jsonData.username)) {
+            if (valid_names.includes(jsonData.username) && jsonData.username != localStorage.getItem("username")) {
 
                 const card = document.createElement("div");
                 card.classList.add("card");
