@@ -17,6 +17,7 @@ document.getElementById('install-button').addEventListener('click', (e) => {
       console.log('User accepted the install prompt');
     } else {
       console.log('User dismissed the install prompt');
+      //ad
     }
     deferredPrompt = null;
   });
