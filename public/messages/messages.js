@@ -114,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function () {
   async function fetchCurrentTime() {
     try {
       const response = await fetch(
-        "http://worldtimeapi.org/api/timezone/Africa/Johannesburg"
+        "https://worldtimeapi.org/api/timezone/Africa/Johannesburg"
       );
       if (!response.ok) {
         throw new Error("Network response was not ok");
