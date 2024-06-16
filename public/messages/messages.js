@@ -229,3 +229,66 @@ function getMonthIndex(month) {
 }
 
 
+function refreshMessageView() {
+  setInterval(async () => {
+    let newMessages = [];
+
+    try {
+      const querySnapshot = await db.collection("Message").get();
+      querySnapshot.forEach((doc) => {
+        const userData = JSON.parse(JSON.stringify(doc.data()));
+
+        if (
+          userData.To == localStorage.getItem("username") &&
+          userData.From == localStorage.getItem("messaageFrom") &&
+          !isMessageDisplayed(userData)
+        ) {
+          newMessages.push(userData);
+        }
+        if (
+          userData.From == localStorage.getItem("username") &&
+          userData.To == localStorage.getItem("messaageFrom") &&
+          !isMessageDisplayed(userData)
+        ) {
+          newMessages.push(userData);
+        }
+      });
+
+      if (newMessages.length > 0) {
+        newMessages.sort((a, b) => {
+          let dateA = parseCustomTimeFormat(a.time[0]);
+          let dateB = parseCustomTimeFormat(b.time[0]);
+          return dateA - dateB; // Sort in ascending order
+        });
+
+        for (let i = 0; i < newMessages.length; i++) {
+          if (newMessages[i].message !== "chat request accepted") {
+            const messageDiv = document.createElement("div");
+            messageDiv.className = "info";
+            messageDiv.textContent = newMessages[i].message;
+            messageDiv.style.color = "white";
+            if (newMessages[i].From != localStorage.getItem("username")) {
+              messageDiv.style.backgroundColor = "green";
+            }
+            chatMessages.appendChild(messageDiv);
+          }
+        }
+      }
+    } catch (e) {
+      console.error("Error getting data: ", e);
+    }
+  }, 10000); // 10 seconds
+}
+
+function isMessageDisplayed(message) {
+  const messageElements = chatMessages.getElementsByClassName("info");
+  for (let i = 0; i < messageElements.length; i++) {
+    if (messageElements[i].textContent === message.message) {
+      return true;
+    }
+  }
+  return false;
+}
+
+// Call the refreshMessageView function to start the interval
+refreshMessageView();
