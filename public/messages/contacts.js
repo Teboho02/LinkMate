@@ -9,8 +9,14 @@ async function getData() {
       let res = JSON.stringify(doc.data());
       let jsonRes = JSON.parse(res);
       if (jsonRes.To == localStorage.getItem("username") || jsonRes.From == localStorage.getItem("username")) {
-        col_messages.push(jsonRes);
+        if(jsonRes.From != localStorage.getItem("username")){
+          //avoid showing messages from myself
+          col_messages.push(jsonRes);
+
+        }
       }
+
+      console.log("messagex ",col_messages);
     });
   } catch (e) {
     console.error("Error getting data: ", e);

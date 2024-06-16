@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const messageDiv = document.createElement("div");
         messageDiv.className = "info";
-        messageDiv.textContent = " ";
+        messageDiv.textContent = "";
         messageDiv.style.color = "black";
         messageDiv.style.backgroundColor = "white";
         chatMessages.appendChild(messageDiv);
