@@ -2,6 +2,12 @@ const username = document.getElementById("username");
 const password = document.getElementById("password");
 const si = document.getElementById("sii");
 
+if(localStorage.getItem("username") != null){
+   //TODOs uncomment later
+ //   window.location.href = "./profile/profile.html"
+}
+
+
 async function getData(username, password) {
     try {
         const querySnapshot = await db.collection("users").get();

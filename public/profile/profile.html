@@ -8,6 +8,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js" defer></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js" defer></script>
     <script src="../config.js" defer></script>
+    <script src="../accounts/signout.js"></script>
 
     <script src="profile.js"></script>
 </head>
@@ -16,10 +17,13 @@
 
         <ul>
             <li><a href="../home/home.html">Home</a></li>
-            <li><a href="../messages/contacts.html">Messages</a></li>
+            <li><a href="../messages/contacts.html" class="notification">
+                <span>Inbox</span>
+                <span class="badge">3</span>
+            </a></li>
             <li><a href="../profile/profile.html">Profile</a></li>
             <li><a href="../requests/request.html">Chat Requests</a></li>
-
+      
           </ul>
 
 

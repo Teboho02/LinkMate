@@ -37,12 +37,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
     })
 
-    updatePro.addEventListener("click", ()=>{
+    updatePro.addEventListener("click", async ()=>{
 
 
         console.log(bio.value);
     
-        alert(bio.value);
 
         if (document.getElementById('relationship').checked) {
             intent.relationship = true;
@@ -108,7 +107,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 interests : st.value
                 
             });
-            console.log("elements inserted successfully ");
+
+            localStorage.setItem("profileComple", "yes");
         } catch (e) {
             console.error("Error adding document: ", e);
         }
@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 const myD = JSON.parse(JSON.stringify(doc.data()));
                 //check if I have already updated the profile
                 if(myD.username == username){
-                    console.log("tes");
+                    localStorage.setItem("profileComple", "yes");
                     bio.textContent = myD.bio;
                     st.textContent =myD.interests;
                     if(myD.relationship){
