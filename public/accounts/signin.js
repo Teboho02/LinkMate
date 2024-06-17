@@ -9,6 +9,7 @@ if(localStorage.getItem("username") != null){
 
 
 async function getData(username, password) {
+    console.log(encryptData(password, "stillLovekamo"));
     try {
         const querySnapshot = await db.collection("users").get();
         let isValidUser = false;
@@ -18,8 +19,9 @@ async function getData(username, password) {
 
             if (userData.username === username && userData.password === password) {
                 isValidUser = true;
+
+                return isValidUser;
             }
-            console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
         });
 
         return isValidUser;
@@ -47,15 +49,7 @@ si.addEventListener("click", async () => {
     }
 });
 
-// if (navigator.geolocation) {
-//     navigator.geolocation.getCurrentPosition(showPosition);
-//   } else {
-//     console.log(
-//     "Geolocation is not supported by this browser.");
-//   }
-  
-//   function showPosition(position) {
-//     console.log(
-//     "Latitude: " + position.coords.latitude +
-//     "Longitude: " + position.coords.longitude);
-//   }
+function encryptData(plainText, secretKey) {
+    const encryptedData = CryptoJS.AES.encrypt(plainText, secretKey).toString();
+    return encryptedData;
+}

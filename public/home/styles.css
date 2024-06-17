@@ -63,7 +63,7 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  min-width: 100px;
+  min-width: 75px;
 }
 .btn:hover {
   background-color: #0056b3;

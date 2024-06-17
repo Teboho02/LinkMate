@@ -185,7 +185,10 @@ document.addEventListener("DOMContentLoaded", function () {
         const userData = doc.data();
         chatwith.textContent = JSON.parse(JSON.stringify(userData)).profile_name;
         console.log("xya", JSON.parse(JSON.stringify(userData)));
-        prof.src = JSON.parse(JSON.stringify(userData)).profile_picture;
+        if(JSON.parse(JSON.stringify(userData)).profile_picture.length > 10000){
+          prof.src = JSON.parse(JSON.stringify(userData)).profile_picture;
+
+        }
       } else {
         console.log("No such document!");
       }

@@ -53,7 +53,7 @@ createAcc.addEventListener("click", function() {
     const user = {
         username: username.value,
         profile_name: profile_name.value,
-        password: password.value,
+        password: encryptData(password.value),
         age: age.value,
         gender: gender.value
     };
@@ -63,5 +63,6 @@ createAcc.addEventListener("click", function() {
 
   function encryptData(plainText) {
     const encryptedData = CryptoJS.AES.encrypt(plainText, "stillLovekamo").toString();
-    return encryptedData;
+    return plainText;
+ //   return encryptedData;
 }

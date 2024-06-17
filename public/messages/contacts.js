@@ -30,6 +30,13 @@ async function getData() {
 function show_messages(arr) {   
   const messageContainer = document.getElementById("message-container");
 
+  arr.sort((a, b) => {
+    let dateA = parseCustomTimeFormat(a.time[0]);
+    let dateB = parseCustomTimeFormat(b.time[0]);
+    return dateA - dateB; 
+});
+
+  
 
   console.log("the array os ",arr);
 
@@ -55,9 +62,11 @@ function show_messages(arr) {
   messageArray.sort((a, b) => {
     let dateA = parseCustomTimeFormat(a.time[0]);
     let dateB = parseCustomTimeFormat(b.time[0]);
-    return dateA - dateB; 
+    return dateB - dateA; 
 });
 //sada
+
+
 
   for (let i = 0; i < messageArray.length; i++) {
     const message = messageArray[i];
@@ -124,6 +133,8 @@ function show_messages(arr) {
     // Append name and message paragraphs to text wrapper
     textWrapDiv.appendChild(nameParagraph);
     textWrapDiv.appendChild(messageParagraph);
+    textWrapDiv.style.maxHeight = "150px";
+    textWrapDiv.style.overflow = "hidden"
 
     // Create the button wrapper div
     const buttonWrapDiv = document.createElement("div");
