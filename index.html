@@ -31,7 +31,17 @@
                 </div>
                 <div>
                     <button id="sii" class="btn">SIGN IN</button>
-                    <button id="install-button" class="btn">nstall-button IN</button>   
+                    <button id="install-button" style="display: none;">Install App</button>
+
+                    <script>
+                        function showInstallPromotion() {
+                            document.getElementById('install-button').style.display = 'block';
+                        }
+                
+                        function hideInstallPromotion() {
+                            document.getElementById('install-button').style.display = 'none';
+                        }
+                    </script>
 
 
                     <p>Dont Have an Account? <a class="link" href="./public/accounts/createAccount.html">Sign up Here!</a>
