@@ -2,7 +2,7 @@
   "name": "LinkMate",
   "short_name": "LinkMate",
   "description": "An app to meet new people",
-  "start_url": "https://teboho02.github.io/Find-my-Patner/",
+  "start_url": "https://link-mate.vercel.app/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#000000",
