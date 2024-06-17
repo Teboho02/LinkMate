@@ -2,7 +2,7 @@
   "name": "Find-my-partner",
   "short_name": "FindMyPartner",
   "description": "An app to meet new people",
-  "start_url": "google.com",
+  "start_url": "https://teboho02.github.io/Find-my-Patner/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#000000",
