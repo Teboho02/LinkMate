@@ -16,7 +16,6 @@ async function getData() {
         }
       }
 
-      console.log("messagex ",col_messages);
     });
   } catch (e) {
     console.error("Error getting data: ", e);
@@ -31,6 +30,8 @@ async function getData() {
 function show_messages(arr) {   
   const messageContainer = document.getElementById("message-container");
 
+
+  console.log("the array os ",arr);
 
   //show only the last message
   messageArray = [];
@@ -48,12 +49,13 @@ function show_messages(arr) {
       messageArray.push(arr[i]); 
     }
   }
+
   messageContainer.innerHTML = "";
 
   messageArray.sort((a, b) => {
     let dateA = parseCustomTimeFormat(a.time[0]);
     let dateB = parseCustomTimeFormat(b.time[0]);
-    return dateB   - dateA; 
+    return dateA - dateB; 
 });
 //sada
 
