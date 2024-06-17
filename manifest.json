@@ -2,7 +2,7 @@
   "name": "Find-my-partner",
   "short_name": "FindMyPartner",
   "description": "An app to meet new people",
-  "start_url": "/",
+  "start_url": "google.com",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#000000",
