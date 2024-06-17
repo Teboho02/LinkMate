@@ -15,6 +15,7 @@ body {
   border: 1px solid #ccc;
   border-radius: 10px;
   box-shadow: 1 1 10px rgba(0, 0, 0, 0.1);
+  
 
 }
 
@@ -45,7 +46,6 @@ body {
     margin-bottom: 10px;
     padding: 10px;
     border-radius: 8px;
-    display: inline-block;
     max-width: 80%;
 }
 
@@ -339,3 +339,14 @@ body {
 .name{
   margin-left: 10px;
 }
+
+.timeright {
+  position: absolute;
+  float: left;
+  left: 1px;
+  bottom: 5px;
+  font-size: 0.7em; /* Adjust the font size as needed */
+  color: #d3ddf1;
+  margin-top: 5px; /* Adjust if needed to position it well within the message box */
+}
+  

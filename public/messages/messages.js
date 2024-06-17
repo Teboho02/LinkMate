@@ -84,6 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
         messageDiv.style.color = "black";
         messageDiv.style.backgroundColor = "white";
         chatMessages.appendChild(messageDiv);
+     
 
 
 
@@ -101,6 +102,11 @@ document.addEventListener("DOMContentLoaded", function () {
               messageDiv.style.backgroundColor = "green";
             }
             chatMessages.appendChild(messageDiv);
+            const time = document.createElement("div");
+            time.className = "timeright";
+            time.textContent = messagesx[i].time[0];
+            messageDiv.appendChild(time);
+    
 
           }
         }
