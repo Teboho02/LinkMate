@@ -1,6 +1,6 @@
 {
-  "name": "Find-my-partner",
-  "short_name": "FindMyPartner",
+  "name": "LinkMate",
+  "short_name": "LinkMate",
   "description": "An app to meet new people",
   "start_url": "https://teboho02.github.io/Find-my-Patner/",
   "display": "standalone",

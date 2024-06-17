@@ -2,14 +2,15 @@
 
 <head>
 
-    <link rel="stylesheet" href="../Find-my-Patner/public/styles/home.css">
-
+    <link rel="stylesheet" href="./styles/home.css">
+    <link rel="manifest" href="manifest.json">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js" defer></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js" defer></script>
-    <script src="../config.js" defer></script>
-    <script src="./accounts//signin.js" defer></script>
-    <script src="/install.js" defer></script>
+    <script src="./config.js" defer></script>
+    <script src="./accounts/signin.js" defer></script>
+    <script src="install.js" defer></script>
+
 
 
 </head>
@@ -30,7 +31,20 @@
             </div>
             <div>
                 <button id="sii" class="btn">SIGN IN</button>
-                <p>Dont Have an Account? <a class="link" href="../public/accounts/createAccount.html">Sign up Here!</a>
+                <button id="install-button">Install App</button>
+
+                <script>
+                    function showInstallPromotion() {
+                        //document.getElementById('install-button').style.display = 'block';
+                    }
+            
+                    function hideInstallPromotion() {
+                        document.getElementById('install-button').style.display = 'none';
+                    }
+                </script>
+
+
+                <p>Dont Have an Account? <a class="link" href="./accounts/createAccount.html">Sign up Here!</a>
                 </p><a class="link" href="">
                 </a>
             </div><a class="link" href="">
