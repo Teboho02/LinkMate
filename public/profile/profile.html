@@ -22,17 +22,24 @@
             <li><a href="../messages/contacts.html">Messages</a></li>
             <li><a href="../profile/profile.html">Profile</a></li>
             <div class="dropdown">
-                <button class="dropbtn">Dropdown 
+               <li> <button class="dropbtn">Options 
                   <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-content">
-                  <a href="../requests/request.html">Link 1</a>
+                  <a href="../requests/request.html">Chat requests</a>
                   <a href="#">Settings</a>
-                  <a href="#">Sign out</a>
+                  <a href="#" onclick="signout()">Sign out</a>
                 </div>
               </div> 
+            </li>
 
           </ul>
+          <script>
+            function signout(){
+                alert("sca");
+            }
+
+          </script>
 
 
         <h2>Profile</h2>
