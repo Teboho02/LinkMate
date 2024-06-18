@@ -194,3 +194,9 @@ ul {
     text-align: left;
   }
 }
+
+@media screen and (max-width: 600px) {
+  .dropdown:hover .dropdown-content {
+    display: block; /* Ensure dropdown content is visible on hover or tap */
+  }
+}
