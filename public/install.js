@@ -11,7 +11,6 @@ window.addEventListener('beforeinstallprompt', (e) => {
 
 const installButton = document.getElementById('install-button');
 installButton.addEventListener('click', (e) => {
-    // Hide the app provided install promotion
     hideInstallPromotion();
     // Show the install prompt
     deferredPrompt.prompt();

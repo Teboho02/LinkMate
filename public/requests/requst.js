@@ -47,11 +47,11 @@ async function getData() {
 
         const buttonReject = document.createElement("button");
         buttonReject.textContent = "Reject";
-
+        
+        
         buttonReject.addEventListener("click", async () => {
           console.log("Rejected");
-          // Perform rejection action if needed, e.g., update status or remove from UI
-          // For now, just removing the card
+
           card.remove();
         });
 
