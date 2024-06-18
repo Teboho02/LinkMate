@@ -181,23 +181,31 @@ function createNavigationMenu() {
     const navMenu = document.createElement("ul");
 
     const links = [
-        { href: "../home/home.html", text: "Home" },
-        { href: "../messages/contacts.html", text: "Messages" },
-        { href: "../profile/profile.html", text: "Profile" },
-        { href: "../requests/request.html", text: "Chat Requests" }
+        { href: "../home/home.html", text: "Home", iconClass: "fa fa-home" },
+        { href: "../messages/contacts.html", text: "Messages", iconClass: "fa fa-envelope" },
+        { href: "../profile/profile.html", text: "Profile", iconClass: "fa fa-user" },
+        { href: "../requests/request.html", text: "Chat Requests", iconClass: "fa fa-comments" }
     ];
 
     links.forEach(link => {
         const listItem = document.createElement("li");
         const anchor = document.createElement("a");
         anchor.href = link.href;
-        anchor.textContent = link.text;
+        
+        const icon = document.createElement("i");
+        icon.className = link.iconClass;
+        
+        anchor.appendChild(icon);
+        anchor.appendChild(document.createTextNode(link.text));
+        
         listItem.appendChild(anchor);
         navMenu.appendChild(listItem);
     });
 
-    profileContainer.appendChild(navMenu);
+    document.getElementById('profileContainer').appendChild(navMenu); // Assuming 'profileContainer' is the id of the container element
 }
+
+
 
 
 async function findusers(minimumage, maximumAge, gender, intent) {
