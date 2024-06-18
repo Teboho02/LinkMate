@@ -4,7 +4,7 @@ const si = document.getElementById("sii");
 
 if(localStorage.getItem("username") != null){
    //TODOs uncomment later
- //   window.location.href = "./profile/profile.html"
+    window.location.href = "./profile/profile.html"
 }
 
 

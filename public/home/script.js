@@ -97,6 +97,10 @@ async function getProfiles(valid_names) {
                 cardImage.appendChild(image);
                 card.appendChild(cardImage);
 
+                cardImage.addEventListener("click", ()=>{
+                    alert("cliked");
+                })
+
 
 
                 const nameElement = document.createElement("p");
