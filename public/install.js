@@ -11,16 +11,23 @@ window.addEventListener('beforeinstallprompt', (e) => {
 
 const installButton = document.getElementById('install-button');
 installButton.addEventListener('click', (e) => {
-    hideInstallPromotion();
-    // Show the install prompt
-    deferredPrompt.prompt();
-    // Wait for the user to respond to the prompt
-    deferredPrompt.userChoice.then((choiceResult) => {
-        if (choiceResult.outcome === 'accepted') {
-            console.log('User accepted the install prompt');
-        } else {
-            console.log('User dismissed the install prompt');
-        }
-        deferredPrompt = null;
-    });
+    //hideInstallPromotion();
+    // Show the install prompt if available
+    if (deferredPrompt) {
+        deferredPrompt.prompt();
+        // Wait for the user to respond to the prompt
+        deferredPrompt.userChoice
+            .then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('User accepted the install prompt');
+                } else {
+                    console.log('User dismissed the install prompt');
+                }
+                deferredPrompt = null;
+            })
+            .catch((error) => {
+                console.error('Error during installation prompt:', error);
+                deferredPrompt = null;
+            });
+    }
 });

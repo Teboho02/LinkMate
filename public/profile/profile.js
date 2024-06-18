@@ -32,10 +32,7 @@ document.addEventListener("DOMContentLoaded", function() {
         fileInput.click();
     });
 
-    gotohome.addEventListener("click", ()=>{
-        window.location.href = "../home/home.html";
 
-    })
 
     updatePro.addEventListener("click", async ()=>{
 
