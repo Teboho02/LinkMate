@@ -39,11 +39,14 @@
 
 ul {
     display: flex;
+    position: sticky;
     justify-content: space-around;
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
+    position: sticky;
+    top: 0; /* Stick to the top of the viewport */
     background-color: #002efa;
   }
   

@@ -19,7 +19,7 @@
     <div class="container">
 
         
-        <ul>
+        <ul style="position: sticky;">
             <li><a href="../home/home.html">Home</a></li>
             <li><a href="../messages/contacts.html">Messages</a></li>
             <li><a href="../profile/profile.html">Profile</a></li>
@@ -69,24 +69,37 @@
             <textarea id="bio" name="bio" rows="4" placeholder="Tell us a little about yourself" required></textarea>
         </div>
         <div class="form_group">
+
+            <div style="border-width: 1px 1px 1px 1px; border-style: solid; border-color: black;">
+
        
             <label for="want">Looking for:</label>
 
                <div class="form_group">
-                <label>
+                <hr>
 
-                    <div>
+
+
+
+                    <div style="display:flex; flex-direction: row;">
+
+                        <label>Friendship</label>
                         <input type="checkbox" id="friendship" name="friendship">
-                        Friendship
-
+                    
                     </div>
                   
-                </label>
+                    <div style="display:flex; flex-direction: row;">
+
                 <label>
-                    <input type="checkbox" id="relationship" name="relationship">
                     Relationship
                 </label>
+                <input type="checkbox" id="relationship" name="relationship" style="padding-left: 5px;">
+
+                </div>
             </div>
+
+        </div>
+
 
 
         </div>
