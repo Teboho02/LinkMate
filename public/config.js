@@ -5,7 +5,7 @@
 
 
 const firebaseConfig = {
-  apiKey: api_key,
+  apiKey: process.env.API_KEY,
   authDomain: "find-my-patner.firebaseapp.com",
   projectId: "find-my-patner",
   storageBucket: "find-my-patner.appspot.com",
