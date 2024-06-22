@@ -1,7 +1,6 @@
 // Your Firebase configuration
 //require('dotenv').config();
 
-const secretKey = process.env.SECRET_KEY;
 
 
 
