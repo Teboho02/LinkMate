@@ -1,24 +1,31 @@
 
 
 // Your Firebase configuration
-const firebaseConfig = {
-    apiKey: "AIzaSyDFBwd8yFSrkKvZikexNWb8VMRozAe1mEk",
-    authDomain: "find-my-patner.firebaseapp.com",
-    projectId: "find-my-patner",
-    storageBucket: "find-my-patner.appspot.com",
-    messagingSenderId: "892330665624",
-    appId: "1:892330665624:web:1d597128bb74982e9a52ed"
-  };
-  
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
-  
+const admin = require('firebase-admin');
+require('dotenv').config();
 
-  async function getData(username, password) {
-    console.log(encryptData(password, "stillLovekamo"));
+// Initialize Firebase Admin SDK
+if (!admin.apps.length) {
+    admin.initializeApp({
+        credential: admin.credential.cert({
+            projectId: process.env.FIREBASE_PROJECT_ID,
+            privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+            clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+        }),
+    });
+}
+
+const db = admin.firestore();
+
+module.exports = async (req, res) => {
+    if (req.method !== 'POST') {
+        return res.status(405).json({ error: 'Method not allowed' });
+    }
+
+    const { username, password } = req.body;
+
     try {
-        const querySnapshot = await db.collection("users").get();
+        const querySnapshot = await db.collection('users').get();
         let isValidUser = false;
 
         querySnapshot.forEach((doc) => {
@@ -26,21 +33,13 @@ const firebaseConfig = {
 
             if (userData.username === username && userData.password === password) {
                 isValidUser = true;
-
-                return isValidUser;
             }
         });
 
-        return isValidUser;
+        return res.status(200).json({ isValidUser });
     } catch (e) {
-        console.error("Error getting data: ", e);
-        return false;
+        console.error('Error getting data: ', e);
+        return res.status(500).json({ error: 'Internal Server Error' });
     }
-}
+};
 
-res = await getData("Test2", "Test2");
-
-if(res){
-    console.log("cys");
-    console.log("tru");
-}
