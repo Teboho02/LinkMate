@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <link rel="stylesheet" href="./settings.css">
+    <script src="settings.js" defer></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js" defer></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js" defer></script>
+    <script src="../config.js" defer></script>
+
+
+    
+</head>
+<body>
+    <div class="container">
+        <h1>Settings</h1>
+
+        <div class="settings-section" id="accountSettings">
+
+
+        </div>
+
+        <div class="settings-section" id="privacySettings">
+            <h2>Privacy Settings</h2>
+            <label for="profileVisibility">Profile Visibility</label>
+            <select id="profileVisibility">
+                <option value="public">Public</option>
+                <option value="private">Private</option>
+            </select>
+
+  
+
+            <button onclick="savePrivacySettings()">Save Privacy Settings</button>
+        </div>
+
+        <div class="settings-section" id="accountActions">
+            <button onclick="signOut()">Sign Out</button>
+            <button onclick="deleteAccount()" class="delete-btn">Delete Account</button>
+
+        </div>
+    </div>
+
+</body>
+</html>

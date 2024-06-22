@@ -2,10 +2,8 @@
 //require('dotenv').config();
 
 
-
-
 const firebaseConfig = {
-  apiKey: process.env.API_KEY,
+  apiKey: "AIzaSyDFBwd8yFSrkKvZikexNWb8VMRozAe1mEk",
   authDomain: "find-my-patner.firebaseapp.com",
   projectId: "find-my-patner",
   storageBucket: "find-my-patner.appspot.com",
@@ -13,6 +11,5 @@ const firebaseConfig = {
   appId: "1:892330665624:web:1d597128bb74982e9a52ed"
 };
 
-// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();

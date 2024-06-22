@@ -34,6 +34,7 @@
             function signout(){
                 //sign out
                 localStorage.clear();
+                window.location.href = "../index.html";
             }
 
           </script>
@@ -73,9 +74,6 @@
                <div class="form_group">
                 <hr>
 
-
-
-
                     <div style="display:flex; flex-direction: row;">
 
                         <label>Friendship</label>
@@ -96,10 +94,8 @@
         </div>
 
 
-
         </div>
         
-
         <div class="form_group">
             <label for="inter">Interests</label>
             <textarea id="inter" name="interests" rows="4" placeholder="Enter your interests (e.g., hiking, reading)" required></textarea>
