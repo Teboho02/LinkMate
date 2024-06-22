@@ -1,6 +1,12 @@
 // Your Firebase configuration
+//require('dotenv').config();
+
+const secretKey = process.env.SECRET_KEY;
+
+
+
 const firebaseConfig = {
-  apiKey: "AIzaSyDFBwd8yFSrkKvZikexNWb8VMRozAe1mEk",
+  apiKey: api_key,
   authDomain: "find-my-patner.firebaseapp.com",
   projectId: "find-my-patner",
   storageBucket: "find-my-patner.appspot.com",

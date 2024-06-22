@@ -20,9 +20,18 @@ function decryptData(encryptedData, secretKey) {
     return decryptedText;
 }
 
-console.log("runni ", encryptData("32", "32"));
 
+function createLocalSession (posts){
 
+    
+
+}
+
+function checkLocalsession (posts){
+
+    
+
+}
 
 
 
