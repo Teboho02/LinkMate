@@ -51,7 +51,7 @@ si.addEventListener("click", async () => {
         window.location.href = "./profile/profile.html";
 
     } else {
-        alert("Invalid username or password");
+        //alert("Invalid username or password");
     }
 });
 
