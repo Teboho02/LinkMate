@@ -9,26 +9,37 @@ if(localStorage.getItem("username") != null){
 
 
 async function getData(username, password) {
-    console.log(encryptData(password, "stillLovekamo"));
-    try {
-        const querySnapshot = await db.collection("users").get();
-        let isValidUser = false;
 
-        querySnapshot.forEach((doc) => {
-            const userData = doc.data();
 
-            if (userData.username === username && userData.password === password) {
-                isValidUser = true;
-
-                return isValidUser;
+    async function loginUser(username, password) {
+        try {
+            const response = await fetch('http://localhost:3000/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password }),
+            });
+            const result = await response.json();
+            console.log(result);
+            return result.isValidUser;
+        } catch (error) {
+            console.error('Error logging in:', error);
+            return false;
+        }
+    }
+    
+    // Example usage
+    loginUser('exampleUsername', 'examplePassword')
+        .then(isValidUser => {
+            if (isValidUser) {
+                console.log('Login successful');
+            } else {
+                console.log('Invalid credentials');
             }
         });
+    
 
-        return isValidUser;
-    } catch (e) {
-        console.error("Error getting data: ", e);
-        return false;
-    }
 }
 
 si.addEventListener("click", async () => {
