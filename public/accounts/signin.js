@@ -43,11 +43,6 @@ async function getData(username, password) {
 }
 
 si.addEventListener("click", async () => {
-    if (!firebase.apps.length) {
-        console.error("Firebase is not initialized!");
-    } else {
-        console.log("working");
-    }
 
     const result = await getData(username.value, password.value);
 
