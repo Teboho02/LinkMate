@@ -4,6 +4,24 @@
 const admin = require('firebase-admin');
 require('dotenv').config();
 
+// api/login.js
+export default function handler(req, res) {
+    if (req.method === 'POST') {
+      // Process login
+      const { username, password } = req.body;
+  
+      // Mock authentication logic
+      if (username === 'user' && password === 'password') {
+        res.status(200).json({ message: 'Login successful' });
+      } else {
+        res.status(401).json({ message: 'Invalid credentials' });
+      }
+    } else {
+      res.status(405).json({ message: 'Method not allowed' });
+    }
+  }
+  
+
 // Initialize Firebase Admin SDK
 if (!admin.apps.length) {
     admin.initializeApp({
