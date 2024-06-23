@@ -13,7 +13,7 @@ async function getData(username, password) {
 
     async function loginUser(username, password) {
         try {
-            const response = await fetch('../api/login', {
+            const response = await fetch('./api/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
