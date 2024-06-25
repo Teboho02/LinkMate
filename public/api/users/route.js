@@ -1,18 +1,15 @@
 import db from './firebase.js';
 
-async function getData() {
-  try {
-    const querySnapshot = await db.collection("Message").get();
-    const results = [];
-    querySnapshot.forEach((doc) => {
-      const userData = doc.data();
-      results.push(userData);
-    });
-    console.log(results);
-    return results; // If you want to use this data elsewhere
-  } catch (e) {
-    console.error("Error getting data: ", e);
-  }
-}
+const express = require('express');
+const app = express();
+require('dotenv').config();
 
-getData();
+app.get('/api/config', (req, res) => {
+  res.json({name : "starr",
+    age : 10
+   });
+});
+
+app.listen(3000, () => {
+  console.log('Server is running on port 3000');
+});

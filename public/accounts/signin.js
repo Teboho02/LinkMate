@@ -9,6 +9,15 @@ if(localStorage.getItem("username") != null){
 }
 
 async function getData(username, password) {
+
+
+  fetch('/api/users/config')
+  .then(response => response.json())
+  .then(data => {
+    console.log('Secret Key:', data.secretKey);
+  });
+
+
   try {
       const querySnapshot = await db.collection("users").get();
       let isValidUser = false;
