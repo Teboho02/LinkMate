@@ -10,16 +10,20 @@ if(localStorage.getItem("username") != null){
 async function getData(username, password) {
     async function logMovies() {
       try {
-        const response = await fetch("/api/users/login.js");  // Ensure this is the correct API endpoint
+        const response = await fetch("/api/users/login.js"); // Adjust this path if needed
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
         const movies = await response.json();
         console.log(movies);
       } catch (e) {
-        console.log(e);
+        console.error("Error fetching movies:", e);
       }
     }
   
     logMovies();
   }
+  
   
 si.addEventListener("click", async () => {
 
