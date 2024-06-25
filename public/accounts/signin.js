@@ -11,34 +11,22 @@ if(localStorage.getItem("username") != null){
 async function getData(username, password) {
 
 
-    async function loginUser(username, password) {
-        try {
-            const response = await fetch('./api/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ username, password }),
-            });
-            const result = await response.json();
-            console.log(result);
-            return result.isValidUser;
-        } catch (error) {
-            console.error('Error logging in:', error);
-            return false;
+    async function logMovies() {
+        try{
+
+        
+        const response = await fetch("./api/login");
+        const movies = await response.json();
+        console.log(movies);
         }
-    }
-    
-    // Example usage
-    loginUser('exampleUsername', 'examplePassword')
-        .then(isValidUser => {
-            if (isValidUser) {
-                console.log('Login successful');
-            } else {
-                console.log('Invalid credentials');
-            }
-        });
-    
+        catch(e){
+            console.log(e);
+        }
+      }
+      
+
+      logMovies();
+
 
 }
 
