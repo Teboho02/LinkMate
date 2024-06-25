@@ -15,7 +15,7 @@ async function getData(username, password) {
         try{
 
         
-        const response = await fetch("./api/login.js");
+        const response = await fetch("./api/users/login.js");
         const movies = await response.json();
         console.log(movies);
         }
