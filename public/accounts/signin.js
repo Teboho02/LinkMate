@@ -7,7 +7,7 @@ if(localStorage.getItem("username") != null){
    // window.location.href = "./profile/profile.html"
 }
 
-fetch('/api/users/config.js')
+fetch('./api/users/config.js')
 .then(response => response.json())
 .then(data => {
   console.log('Secret Key:', data.secretKey);
