@@ -1,7 +1,7 @@
 const username = document.getElementById("username");
 const password = document.getElementById("password");
 const si = document.getElementById("sii");
-import config from  require("./api/users/config.js");
+import config from "./api/users/config.js";
 
 if(localStorage.getItem("username") != null){
    //TODOs uncomment later
