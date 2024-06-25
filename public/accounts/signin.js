@@ -10,7 +10,7 @@ if(localStorage.getItem("username") != null){
 async function getData(username, password) {
     async function logMovies() {
       try {
-        const response = await fetch("/api/users/"); // Adjust this path if needed
+        const response = await fetch("/api/users/route.js"); // Adjust this path if needed
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
