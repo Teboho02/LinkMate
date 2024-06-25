@@ -7,29 +7,20 @@ if(localStorage.getItem("username") != null){
     window.location.href = "./profile/profile.html"
 }
 
-
 async function getData(username, password) {
-
-
     async function logMovies() {
-        try{
-
-        
-        const response = await fetch("./api/users/login.js");
+      try {
+        const response = await fetch("/api/users/login.js");  // Ensure this is the correct API endpoint
         const movies = await response.json();
         console.log(movies);
-        }
-        catch(e){
-            console.log(e);
-        }
+      } catch (e) {
+        console.log(e);
       }
-      
-
-      logMovies();
-
-
-}
-
+    }
+  
+    logMovies();
+  }
+  
 si.addEventListener("click", async () => {
 
     const result = await getData(username.value, password.value);
