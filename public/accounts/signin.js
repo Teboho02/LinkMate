@@ -45,7 +45,7 @@ si.addEventListener("click", async () => {
 
     if (result) {
         localStorage.setItem("username",username.value);
-        window.location.href = "./profile/profile.html";
+     //   window.location.href = "./profile/profile.html";
 
     } else {
         //alert("Invalid username or password");
