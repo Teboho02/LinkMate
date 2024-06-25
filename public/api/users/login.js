@@ -1,4 +1,4 @@
-const config = require("../config.js");
+//const config = require("../config.js");
 
 export async function GET(req) {
   const a = {
