@@ -1,15 +1,24 @@
-const express = require('express');
-const app = express();
+const firebaseapp = require("https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js");
+const firestore = require("https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js");
+const config = require("./config.js");
 
-app.get('/api/users/login', (req, res) => {
-  const a = {
-    text: "HELLO WORLD",
-    age: "20"
-  };
+getData();
 
-  res.json(a);
-});
+async function getData() {
 
-app.listen(3000, () => {
-  console.log('Server is running on port 3000');
-});
+  try {
+    const querySnapshot = await db.collection("Message").get();
+    querySnapshot.forEach((doc) => {
+      const userData = doc.data();
+
+      let res = JSON.stringify(doc.data());
+      let jsonRes = JSON.parse(res);
+   
+      return res;
+
+    });
+  } catch (e) {
+    console.error("Error getting data: ", e);
+  }
+
+}
