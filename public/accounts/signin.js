@@ -8,21 +8,26 @@ if(localStorage.getItem("username") != null){
 }
 
 async function getData(username, password) {
-    async function logMovies() {
-      try {
-        const response = await fetch("/api/users/route.js"); // Adjust this path if needed
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const movies = await response.json();
-        console.log(movies);
-      } catch (e) {
-        console.error("Error fetching movies:", e);
-      }
-    }
-  
-    logMovies();
+  try {
+      const querySnapshot = await db.collection("users").get();
+      let isValidUser = false;
+
+      querySnapshot.forEach((doc) => {
+          const userData = doc.data();
+
+          if (userData.username === username && userData.password === password) {
+              isValidUser = true;
+          }
+          console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
+      });
+
+      return isValidUser;
+  } catch (e) {
+      console.error("Error getting data: ", e);
+      return false;
   }
+}
+
   
   
 si.addEventListener("click", async () => {
