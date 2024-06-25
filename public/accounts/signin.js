@@ -10,7 +10,7 @@ if(localStorage.getItem("username") != null){
 async function getData(username, password) {
 
 
-  fetch('/api/users/config')
+  fetch('/api/users/config.js')
   .then(response => response.json())
   .then(data => {
     console.log('Secret Key:', data.secretKey);
