@@ -9,6 +9,22 @@ const minAge = document.getElementById('minAge');
 const maxAge = document.getElementById('maxAge');
 const filterButton = document.getElementById('filterButton');
 
+
+const fetchApplications = async () => {
+    try {
+      const response = await fetch("./api/users/config.js");
+      if (response.ok) {
+        const data = await response.json(); 
+      } else {
+        console.error("Failed to fetch applications:", response.status); // Log error if fetching fails
+      }
+    } catch (error) {
+      console.error("Error fetching applications:", error); // Log error if an error occurs
+    }
+}
+fetchApplications();
+
+
 function encryptData(plainText, secretKey) {
     const encryptedData = CryptoJS.AES.encrypt(plainText, secretKey).toString();
     return encryptedData;
@@ -30,9 +46,17 @@ filterButton.addEventListener("click", async () => {
     const gender = preferredGender.value;
     const intent = lookingFor.value;
 
+
+    const userPreferences = {
+        minimumAge: minimumage,
+        maximumAge: maximumAge,
+        gender: gender,
+        intent: intent
+    };
+
     profileContainer.innerHTML = "";
     createNavigationMenu();
-
+    createForm(userPreferences);
     const res = await (findusers(minimumage, maximumAge, gender, intent));
 
 
@@ -42,18 +66,15 @@ filterButton.addEventListener("click", async () => {
 
 
 async function getProfiles(valid_names) {
+    
     const myUsername = localStorage.getItem("username");
-
     try {
 
-        
         const querySnapshot = await db.collection("Profile")
                               .where(firebase.firestore.FieldPath.documentId(), 'in', valid_names)
                               .get();
 
-
         const docsArray = querySnapshot.docs.slice();
-
         function shuffle(array) {
             for (let i = array.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
@@ -61,7 +82,6 @@ async function getProfiles(valid_names) {
             }
             return array;
         }
-
         const shuffledDocs = shuffle(docsArray);
 
 
@@ -238,3 +258,100 @@ async function findusers(minimumage, maximumAge, gender, intent) {
     }
 }
 
+function createForm(userPreferences) {
+    const container = document.getElementById('profileContainer');
+
+    const genderDiv = document.createElement('div');
+    const genderLabel = document.createElement('label');
+    genderLabel.setAttribute('for', 'genderSelect');
+    genderLabel.textContent = 'Gender:';    
+    const genderSelect = document.createElement('select');
+    genderSelect.id = 'genderSelect';
+    ['All', 'Male', 'Female'].forEach(value => {
+        const option = document.createElement('option');
+        option.value = value.toLowerCase();
+        option.textContent = value;
+        genderSelect.appendChild(option);
+    });
+    genderDiv.appendChild(genderLabel);
+    genderDiv.appendChild(genderSelect);    
+
+    const lookingForDiv = document.createElement('div');
+    const lookingForLabel = document.createElement('label');
+    lookingForLabel.setAttribute('for', 'lookingForSelect');
+    lookingForLabel.textContent = 'Looking for:';
+    const lookingForSelect = document.createElement('select');
+    lookingForSelect.id = 'lookingForSelect';
+    ['Friendship', 'Relationship', 'Both'].forEach(value => {
+        const option = document.createElement('option');
+        option.value = value;
+        option.textContent =value;
+        lookingForSelect.appendChild(option);
+    });
+    lookingForDiv.appendChild(lookingForLabel);
+    lookingForDiv.appendChild(lookingForSelect);
+
+    const minAgeDiv = document.createElement('div');
+    const minAgeLabel = document.createElement('label');
+    minAgeLabel.setAttribute('for', 'minAge');
+    minAgeLabel.textContent = 'Min Age:';
+    const minAgeInput = document.createElement('input');
+    minAgeInput.type = 'number';
+    minAgeInput.id = 'minAge';
+    minAgeInput.min = '0';
+    minAgeInput.max = '100';
+    minAgeInput.value = userPreferences.minimumAge;
+    minAgeDiv.appendChild(minAgeLabel);
+    minAgeDiv.appendChild(minAgeInput);
+
+    const maxAgeDiv = document.createElement('div');
+    const maxAgeLabel = document.createElement('label');
+    maxAgeLabel.setAttribute('for', 'maxAge');
+    maxAgeLabel.textContent = 'Max Age:';
+    const maxAgeInput = document.createElement('input');
+    maxAgeInput.type = 'number';
+    maxAgeInput.id = 'maxAge';
+    maxAgeInput.min = '0';
+    maxAgeInput.max = '35';
+    maxAgeInput.value = userPreferences.maximumAge;
+    maxAgeDiv.appendChild(maxAgeLabel);
+    maxAgeDiv.appendChild(maxAgeInput);
+
+    const filterButton = document.createElement('button');
+    filterButton.id = 'filterButton';
+    filterButton.className = 'btn';
+    filterButton.textContent = 'Apply Filter';
+
+    filterButton.addEventListener("click", async () => {
+
+
+        const minimumage = minAge.value;
+        const maximumAge = maxAge.value;
+        const gender = preferredGender.value;
+        const intent = lookingFor.value;
+    
+    
+        const userPreferences = {
+            minimumAge: minimumage,
+            maximumAge: maximumAge,
+            gender: gender,
+            intent: intent
+        };
+    
+        profileContainer.innerHTML = "";
+        createNavigationMenu();
+        createForm(userPreferences);
+        const res = await (findusers(minimumage, maximumAge, gender, intent));
+    
+    
+        getProfiles(res);
+    
+    })
+    
+
+    container.appendChild(genderDiv);
+    container.appendChild(lookingForDiv);
+    container.appendChild(minAgeDiv);
+    container.appendChild(maxAgeDiv);
+    container.appendChild(filterButton);
+}
