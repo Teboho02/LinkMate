@@ -9,21 +9,22 @@ const minAge = document.getElementById('minAge');
 const maxAge = document.getElementById('maxAge');
 const filterButton = document.getElementById('filterButton');
 
-
-const fetchApplications = async () => {
+// frontend.js
+async function fetchUserData() {
     try {
-      const response = await fetch("../api/users/route.js");
-      if (response.ok) {
-        const data = await response.json(); 
-      } else {
-        console.error("Failed to fetch applications:", response.status); // Log error if fetching fails
+      const response = await fetch('http://localhost:3000/api/users');
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
       }
+      const data = await response.json();
+      console.log(data); // { name: "starr", age: 10 }
     } catch (error) {
-      console.error("Error fetching applications:", error); // Log error if an error occurs
+      console.error('Error fetching data:', error);
     }
-}
-fetchApplications();
-
+  }
+  
+  fetchUserData();
+  
 
 function encryptData(plainText, secretKey) {
     const encryptedData = CryptoJS.AES.encrypt(plainText, secretKey).toString();
