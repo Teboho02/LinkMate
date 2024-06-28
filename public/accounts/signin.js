@@ -6,37 +6,23 @@ if(localStorage.getItem("username") != null){
    //TODOs uncomment later
    // window.location.href = "./profile/profile.html"
 }
+getUserDocument("Test2");
 
-fetch('./api/users/config.js')
-.then(response => response.json())
-.then(data => {
-  console.log('Secret Key:', data.secretKey);
-});
+
+async function getUserDocument(userId) {
+
+  }
 
 
 
 async function getData(username, password) {
 
+    const userDocRef = db.collection("users").doc(username);
 
+    const userDocSnap = await userDocRef.get();
 
-  try {
-      const querySnapshot = await db.collection("users").get();
-      let isValidUser = false;
-
-      querySnapshot.forEach((doc) => {
-          const userData = doc.data();
-
-          if (userData.username === username && userData.password === password) {
-              isValidUser = true;
-          }
-          console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
-      });
-
-      return isValidUser;
-  } catch (e) {
-      console.error("Error getting data: ", e);
-      return false;
-  }
+        return userDocSnap.data().password == password ? true : false;
+      
 }
 
   
@@ -47,10 +33,10 @@ si.addEventListener("click", async () => {
 
     if (result) {
         localStorage.setItem("username",username.value);
-     //   window.location.href = "./profile/profile.html";
+        window.location.href = "./profile/profile.html";
 
     } else {
-        //alert("Invalid username or password");
+        alert("Invalid username or password");
     }
 });
 

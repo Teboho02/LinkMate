@@ -21,22 +21,8 @@ function decryptData(encryptedData, secretKey) {
 }
 
 
-function createLocalSession (posts){
-
-    
-
-}
-
-function checkLocalsession (posts){
-
-    
-
-}
-
-
 
 filterButton.addEventListener("click", async () => {
-
 
 
     const minimumage = minAge.value;
@@ -44,19 +30,13 @@ filterButton.addEventListener("click", async () => {
     const gender = preferredGender.value;
     const intent = lookingFor.value;
 
-
-
     profileContainer.innerHTML = "";
     createNavigationMenu();
-
 
     const res = await (findusers(minimumage, maximumAge, gender, intent));
 
 
     getProfiles(res);
-
-
-
 
 })
 
@@ -65,12 +45,15 @@ async function getProfiles(valid_names) {
     const myUsername = localStorage.getItem("username");
 
     try {
-        const querySnapshot = await db.collection("Profile").get();
 
-        // Step 1: Extract documents into an array
-        const docsArray = querySnapshot.docs.slice(); // `.slice()` to create a shallow copy
+        
+        const querySnapshot = await db.collection("Profile")
+                              .where(firebase.firestore.FieldPath.documentId(), 'in', valid_names)
+                              .get();
 
-        // Step 2: Shuffle the array using Fisher-Yates shuffle algorithm
+
+        const docsArray = querySnapshot.docs.slice();
+
         function shuffle(array) {
             for (let i = array.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
@@ -81,10 +64,7 @@ async function getProfiles(valid_names) {
 
         const shuffledDocs = shuffle(docsArray);
 
-        
-    
 
-        // Step 3: Iterate over the shuffled array
         for (const doc of shuffledDocs) {
             const jsonData = doc.data();
             const userId = doc.id;
@@ -222,26 +202,37 @@ function createNavigationMenu() {
 
 
 async function findusers(minimumage, maximumAge, gender, intent) {
+
+    const req = {
+        minimumage : minimumage,    
+        maximumAge : maximumAge,
+        gender : gender,
+        intent : intent
+    }
+    //check if it already exist in the local storage 
+
+    if(sessionStorage.getItem("req") === req){
+        return sessionStorage.getItem("cachedResults");
+    }
     try {
         const results = [];
-        const querySnapshot = await db.collection("users").get();
+        const usersCollection = await db.collection("users");
+        let requirements = null;
+        if(gender == "all"){
+             requirements = usersCollection.where("age", ">",minimumage).where("age", "<",maximumAge);
+        }else{
+             requirements = usersCollection.where("age", ">",minimumage).where("age", "<",maximumAge).where("gender", "=" ,gender);
+        }
         let isValidUser = false;
+        const querySnapshot = await requirements.get();
         querySnapshot.forEach((doc) => {
             const userData = doc.data();
+                results.push(userData.username);
 
-            //console.log("sa ",.gender);
-            let goodage = parseInt(userData.age) >= minimumage && parseInt(userData.age) <= maximumAge;
-            if (userData.gender == gender && goodage) {
-                results.push(userData.username);
-            }
-            else if (gender == "all" && goodage) {
-                results.push(userData.username);
-            }
         });
-        
+        window.sessionStorage.setItem("req",req);
+        window.sessionStorage.setItem("cachedResults", results);
         return results;
-
-
     } catch (e) {
         console.error("Error getting data: ", e);
     }
