@@ -12,7 +12,7 @@ const filterButton = document.getElementById('filterButton');
 
 const fetchApplications = async () => {
     try {
-      const response = await fetch("../api/users");
+      const response = await fetch("../api/users/route.js");
       if (response.ok) {
         const data = await response.json(); 
       } else {
