@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 require('dotenv').config();
 
-app.get('/api/config', (req, res) => {
+app.get('/', (req, res) => {
   res.json({name : "starr",
     age : 10
    });
