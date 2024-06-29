@@ -39,8 +39,18 @@ document.addEventListener("DOMContentLoaded", function () {
     async function getMessages() {
       try {
 
-        const querySnapshot = await db.collection("Message").get();
-        querySnapshot.forEach((doc) => {
+        const query1 = db.collection("Message").where("From", "==", username);
+        const query2 = db.collection("Message").where("To", "==", username);
+
+        const snapshot1 = await query1.get();
+        const snapshot2 = await query2.get();
+
+        const combinedSnapshot = snapshot1.docs.concat(snapshot2.docs);
+
+        const uniqueMessages = Array.from(new Set(combinedSnapshot.map(doc => doc.data())));
+
+      //  const querySnapshot = await db.collection("Message").where("From", "==", localStorage.getItem("username")).where("To", "==", localStorage.getItem("username")).get();
+        uniqueMessages.forEach((doc) => {
           const userData = JSON.parse(JSON.stringify(doc.data()));
 
           if (
