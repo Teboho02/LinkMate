@@ -237,13 +237,12 @@ async function findusers(minimumage, maximumAge, gender, intent) {
     }
     try {
         const results = [];
-        const requirements = await db.collection("users").where("age", ">", minimumage).where("age", "<", maximumAge);
-       // let requirements = null;
-        // if (gender == "all") {
-        //     requirements = usersCollection.where("age", ">", minimumage).where("age", "<", maximumAge);
-        // } else {
-        //     requirements = usersCollection.where("age", ">", minimumage).where("age", "<", maximumAge).where("gender", "=", gender);
-        // }
+        let requirements = null;
+        if (gender == "all") {
+            requirements =  await db.collection("users").where("age", ">", minimumage).where("age", "<", maximumAge);
+        } else {
+            requirements =  await db.collection("users").where("age", ">", minimumage).where("age", "<", maximumAge).where("gender", "=", gender);
+        }
         let isValidUser = false;
         const querySnapshot = await requirements.get();
         querySnapshot.forEach((doc) => {
