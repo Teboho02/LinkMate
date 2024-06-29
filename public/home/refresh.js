@@ -14,7 +14,9 @@ async function checkRequests() {
     querySnapshot.forEach((doc) => {
 
         const userdata = doc.data;
-        console.log(userdata);
+        console.log(userdata.to);
+        console.log(userdata.from);
+
 
     });
 
