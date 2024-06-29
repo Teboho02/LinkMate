@@ -7,7 +7,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js" defer></script>
     <script src="../config.js" defer></script>
     <script src="./requst.js" defer></script>
-
+    <script src="../home/refresh.js" defer></script>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -20,14 +20,14 @@
   
     <div id="profileContainer" class="container">
 
-        <ul>
+   
+        <ul class="lst">
             <li><a href="../home/home.html"><i class="fa fa-home"></i>Home</a></li>
-            <li><a href="../messages/contacts.html"><i class="fa fa-envelope"></i>Messages</a></li>
+            <li id="mess"><a href="../messages/contacts.html"><i class="fa fa-envelope"></i>Messages</a></li>
             <li><a href="../profile/profile.html"><i class="fa fa-user"></i>Profile</a></li>
-            <li><a href="../requests/request.html"><i class="fa fa-comments"></i>Chat Requests</a></li>
+            <li id="chatReq"><a href="../requests/request.html"><i class="fa fa-comments"></i>Chat Requests</a></li>
         </ul>
-        
-        
+
           
           <div class="card">
             <div class="card__content">
