@@ -19,12 +19,14 @@ async function checkRequests() {
         console.log(userdata.from);
 
         if(!userdata.Accepted && userdata.to === myUsername){
+            console.log("yes");
             count++;
         }
 
 
     });
 
+    console.log(count);
     alert("count ",count);
 
 
