@@ -16,6 +16,11 @@ app.get('/api/getEnv', (req, res) => {
   res.json({ apiUrl: process.env.API_URL });
 });
 
+// Catch-all handler to serve index.html for any route not handled above
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
