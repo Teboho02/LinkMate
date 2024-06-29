@@ -7,6 +7,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   fetchCurrentTime();
 
+
+
+
   chatwith.textContent = localStorage.getItem("messaageFrom");
 
   getUserInfoById(localStorage.getItem("messaageFrom"));
@@ -36,17 +39,16 @@ document.addEventListener("DOMContentLoaded", function () {
   function getMessagesAndDisplay() {
     let messagesx = [];
 
+    //update all to read
+
+
+
     async function getMessages() {
       try {
 
-        const querySnapshot = await db.collection("Message")
-        .where("From", "==", localStorage.getItem("username"))
-        .orWhere("To", "==", localStorage.getItem("username"))
-        .get();
-    
+        const querySnapshot = await db.collection("Message").get();
         querySnapshot.forEach((doc) => {
           const userData = JSON.parse(JSON.stringify(doc.data()));
-          alert(userData);
 
           if (
             userData.To == localStorage.getItem("username") &&
@@ -75,7 +77,6 @@ document.addEventListener("DOMContentLoaded", function () {
           let dateB = parseCustomTimeFormat(b.time[0]);
           return dateA - dateB; // Sort in descending order
         });
-
 
 
 
@@ -165,11 +166,11 @@ document.addEventListener("DOMContentLoaded", function () {
           To: localStorage.getItem("messaageFrom"),
           time: [time],
           message: myMessage,
-          read : false,
+          read : false
         });
+        console.log("message sent ");
       } catch (e) {
         console.error("Error sending message: ", e);
-        alert("failed sending message");
       }
     }
 
@@ -186,7 +187,6 @@ document.addEventListener("DOMContentLoaded", function () {
       if (doc.exists) {
         const userData = doc.data();
         chatwith.textContent = JSON.parse(JSON.stringify(userData)).profile_name;
-        console.log("xya", JSON.parse(JSON.stringify(userData)));
         if(JSON.parse(JSON.stringify(userData)).profile_picture.length > 10000){
           prof.src = JSON.parse(JSON.stringify(userData)).profile_picture;
 
@@ -198,25 +198,9 @@ document.addEventListener("DOMContentLoaded", function () {
       console.error("Error getting document: ", e);
     }
   }
-
   // Example usage:
   getUserInfoById(localStorage.getItem("messaageFrom"));
 });
-
-async function getMessages() {
-  try {
-    const querySnapshot = await db.collection("Messages").get();
-    let isValidUser = false;
-    querySnapshot.forEach((doc) => {
-      const userData = doc.data();
-
-      console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
-    });
-  } catch (e) {
-    console.error("Error getting data: ", e);
-  }
-}
-
 
 
 
