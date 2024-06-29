@@ -110,7 +110,7 @@ async function getProfiles(valid_names) {
                 card.appendChild(cardImage);
 
                 cardImage.addEventListener("click", () => {
-                    alert("cliked");
+                    
                 })
 
 

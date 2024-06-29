@@ -20,8 +20,6 @@ async function getData(username, password) {
       
 }
 
-  
-  
 si.addEventListener("click", async () => {
 
     const result = await getData(username.value, password.value);
@@ -35,7 +33,3 @@ si.addEventListener("click", async () => {
     }
 });
 
-function encryptData(plainText, secretKey) {
-    const encryptedData = CryptoJS.AES.encrypt(plainText, secretKey).toString();
-    return encryptedData;
-}

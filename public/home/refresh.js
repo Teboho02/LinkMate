@@ -39,10 +39,8 @@ async function checkMessages() {
 
         unreadCount = froms.length;
 
-        alert(unreadCount);
 
         if (unreadCount > 0) {  
-            console.log(`You have ${unreadCount} unread messages.`);
             var chatReqElement = document.getElementById('mess').querySelector('a');
             var icon = chatReqElement.querySelector('i');
             chatReqElement.textContent = 'Messages(' + unreadCount + ')';

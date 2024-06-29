@@ -168,7 +168,6 @@ document.addEventListener("DOMContentLoaded", function () {
           message: myMessage,
           read : false
         });
-        console.log("message sent ");
       } catch (e) {
         console.error("Error sending message: ", e);
       }
