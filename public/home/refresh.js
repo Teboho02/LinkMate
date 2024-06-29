@@ -7,6 +7,7 @@ const myUsername = localStorage.getItem("username");
 checkRequests();
 async function checkRequests() {
 
+    console.log("running");
     const res = await db.collection("chatInvite").where("to", "=", myUsername);
 
     const querySnapshot = await res.get();
