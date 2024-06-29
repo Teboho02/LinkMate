@@ -22,7 +22,7 @@
         fetch('../api/get-env')
             .then(response => response.json())
             .then(env => {
-                console.log('API Key:', env.NEXT_PUBLIC_API_KEY);
+                console.log('API Key:', env.API_KEY);
                 // Use the environment variables as needed
             })
             .catch(error => console.error('Error fetching env variables:', error));
