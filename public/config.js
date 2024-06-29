@@ -12,6 +12,8 @@ async function fetchEnv() {
 
 const key = await fetchEnv();
 
+alert("the key is ",key);
+
 
 console.log(process.env.FIREBASE_PRIVATE_KEY);
 
