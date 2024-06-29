@@ -39,10 +39,11 @@ document.addEventListener("DOMContentLoaded", function () {
     async function getMessages() {
       try {
 
-        const querySnapshot = await db.collection("Message").or(
-          where("From", "==", localStorage.getItem("username")),
-          where("To", "==", localStorage.getItem("username"))
-        ).get();
+        const querySnapshot = await db.collection("Message")
+        .where("From", "==", localStorage.getItem("username"))
+        .orWhere("To", "==", localStorage.getItem("username"))
+        .get();
+    
         querySnapshot.forEach((doc) => {
           const userData = JSON.parse(JSON.stringify(doc.data()));
           alert(userData);
