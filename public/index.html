@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js" defer></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js" defer></script>
-    <script src="./config.js" type="module" defer></script>
+    <script src="./config.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script> 
     <script src="./accounts/signin.js" defer></script>
     <script src="install.js" defer></script>
@@ -26,13 +26,6 @@
                   Sign in
                 </h1>
 
-                <script>
-                    window.env = {
-                      API_URL: '%FIREBASE_PRIVATE_KEY%'
-                    };
-                    console.log(window.env);
-                  </script>
-              
             <div class="form_group">
                 <label class="sub_title" for="name">username</label>
                 <input placeholder="Enter your full name" id="username" class="form_style" type="text">
