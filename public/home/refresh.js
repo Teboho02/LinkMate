@@ -4,11 +4,21 @@
 
 const myUsername = localStorage.getItem("username");
 
-const res = await db.collection("chatInvite").where("to", "=", myUsername);
+checkRequests();
+async function checkRequests() {
 
-const querySnapshot = await res.get();
-querySnapshot.forEach((doc) => {
+    const res = await db.collection("chatInvite").where("to", "=", myUsername);
 
-    console.log(doc.data);
+    const querySnapshot = await res.get();
+    querySnapshot.forEach((doc) => {
 
-});
+        console.log(doc.data);
+
+    });
+
+
+}
+
+function checkMessages() {
+    //diplay the number of people
+}
