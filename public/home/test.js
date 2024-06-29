@@ -1,6 +1,5 @@
 
 
 console.log("running");
-const dotenv = require('dotenv');
 
-console.log(process.env.FIREBASE_PRIVATE_KEY);
+console.log(process.env.API_KEY);
