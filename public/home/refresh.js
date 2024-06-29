@@ -10,7 +10,7 @@ async function checkRequests() {
     let count = 0;
 
     console.log("running");
-    const res = await db.collection("chatInvite").where("to", "==", myUsername);
+    const res = await db.collection("chatInvite").where("to", "==", myUsername).where("Accepted" , "==" , false);
 
     const querySnapshot = await res.get();
     querySnapshot.forEach((doc) => {
