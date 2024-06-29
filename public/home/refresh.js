@@ -1,9 +1,10 @@
-
+'use strict'
 
 const reqMenu = document.getElementById("chatReq");
 const myUsername = localStorage.getItem("username");
 
 checkRequests();
+checkMessages();
 async function checkRequests() {
 
     let count = 0;
