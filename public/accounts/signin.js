@@ -6,12 +6,7 @@ if(localStorage.getItem("username") != null){
    //TODOs uncomment later
    // window.location.href = "./profile/profile.html"
 }
-getUserDocument("Test2");
 
-
-async function getUserDocument(userId) {
-
-  }
 
 
 

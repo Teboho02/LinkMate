@@ -12,19 +12,19 @@ const filterButton = document.getElementById('filterButton');
 // frontend.js
 async function fetchUserData() {
     try {
-      const response = await fetch('http://localhost:3000/api/users');
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      const data = await response.json();
-      console.log(data); // { name: "starr", age: 10 }
+        const response = await fetch('http://localhost:3000/api/users');
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        console.log(data); // { name: "starr", age: 10 }
     } catch (error) {
-      console.error('Error fetching data:', error);
+        console.error('Error fetching data:', error);
     }
-  }
-  
-  fetchUserData();
-  
+}
+
+fetchUserData();
+
 
 function encryptData(plainText, secretKey) {
     const encryptedData = CryptoJS.AES.encrypt(plainText, secretKey).toString();
@@ -67,13 +67,13 @@ filterButton.addEventListener("click", async () => {
 
 
 async function getProfiles(valid_names) {
-    
+
     const myUsername = localStorage.getItem("username");
     try {
 
         const querySnapshot = await db.collection("Profile")
-                              .where(firebase.firestore.FieldPath.documentId(), 'in', valid_names)
-                              .get();
+            .where(firebase.firestore.FieldPath.documentId(), 'in', valid_names)
+            .get();
 
         const docsArray = querySnapshot.docs.slice();
         function shuffle(array) {
@@ -107,7 +107,7 @@ async function getProfiles(valid_names) {
                 cardImage.appendChild(image);
                 card.appendChild(cardImage);
 
-                cardImage.addEventListener("click", ()=>{
+                cardImage.addEventListener("click", () => {
                     alert("cliked");
                 })
 
@@ -205,13 +205,13 @@ function createNavigationMenu() {
         const listItem = document.createElement("li");
         const anchor = document.createElement("a");
         anchor.href = link.href;
-        
+
         const icon = document.createElement("i");
         icon.className = link.iconClass;
-        
+
         anchor.appendChild(icon);
         anchor.appendChild(document.createTextNode(link.text));
-        
+
         listItem.appendChild(anchor);
         navMenu.appendChild(listItem);
     });
@@ -225,33 +225,33 @@ function createNavigationMenu() {
 async function findusers(minimumage, maximumAge, gender, intent) {
 
     const req = {
-        minimumage : minimumage,    
-        maximumAge : maximumAge,
-        gender : gender,
-        intent : intent
+        minimumage: minimumage,
+        maximumAge: maximumAge,
+        gender: gender,
+        intent: intent
     }
     //check if it already exist in the local storage 
 
-    if(sessionStorage.getItem("req") === req){
+    if (sessionStorage.getItem("req") === req) {
         return sessionStorage.getItem("cachedResults");
     }
     try {
         const results = [];
         const usersCollection = await db.collection("users");
         let requirements = null;
-        if(gender == "all"){
-             requirements = usersCollection.where("age", ">",minimumage).where("age", "<",maximumAge);
-        }else{
-             requirements = usersCollection.where("age", ">",minimumage).where("age", "<",maximumAge).where("gender", "=" ,gender);
+        if (gender == "all") {
+            requirements = usersCollection.where("age", ">", minimumage).where("age", "<", maximumAge);
+        } else {
+            requirements = usersCollection.where("age", ">", minimumage).where("age", "<", maximumAge).where("gender", "=", gender);
         }
         let isValidUser = false;
         const querySnapshot = await requirements.get();
         querySnapshot.forEach((doc) => {
             const userData = doc.data();
-                results.push(userData.username);
+            results.push(userData.username);
 
         });
-        window.sessionStorage.setItem("req",req);
+        window.sessionStorage.setItem("req", req);
         window.sessionStorage.setItem("cachedResults", results);
         return results;
     } catch (e) {
@@ -265,7 +265,7 @@ function createForm(userPreferences) {
     const genderDiv = document.createElement('div');
     const genderLabel = document.createElement('label');
     genderLabel.setAttribute('for', 'genderSelect');
-    genderLabel.textContent = 'Gender:';    
+    genderLabel.textContent = 'Gender:';
     const genderSelect = document.createElement('select');
     genderSelect.id = 'genderSelect';
     ['All', 'Male', 'Female'].forEach(value => {
@@ -275,7 +275,7 @@ function createForm(userPreferences) {
         genderSelect.appendChild(option);
     });
     genderDiv.appendChild(genderLabel);
-    genderDiv.appendChild(genderSelect);    
+    genderDiv.appendChild(genderSelect);
 
     const lookingForDiv = document.createElement('div');
     const lookingForLabel = document.createElement('label');
@@ -286,7 +286,7 @@ function createForm(userPreferences) {
     ['Friendship', 'Relationship', 'Both'].forEach(value => {
         const option = document.createElement('option');
         option.value = value;
-        option.textContent =value;
+        option.textContent = value;
         lookingForSelect.appendChild(option);
     });
     lookingForDiv.appendChild(lookingForLabel);
@@ -330,25 +330,25 @@ function createForm(userPreferences) {
         const maximumAge = maxAge.value;
         const gender = preferredGender.value;
         const intent = lookingFor.value;
-    
-    
+
+
         const userPreferences = {
             minimumAge: minimumage,
             maximumAge: maximumAge,
             gender: gender,
             intent: intent
         };
-    
+
         profileContainer.innerHTML = "";
         createNavigationMenu();
         createForm(userPreferences);
         const res = await (findusers(minimumage, maximumAge, gender, intent));
-    
-    
+
+
         getProfiles(res);
-    
+
     })
-    
+
 
     container.appendChild(genderDiv);
     container.appendChild(lookingForDiv);
