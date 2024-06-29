@@ -13,7 +13,8 @@ async function checkRequests() {
     const querySnapshot = await res.get();
     querySnapshot.forEach((doc) => {
 
-        console.log(doc.data);
+        const userdata = doc.data;
+        console.log(userdata);
 
     });
 
