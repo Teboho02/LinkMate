@@ -8,7 +8,7 @@ checkRequests();
 async function checkRequests() {
 
     console.log("running");
-    const res = await db.collection("chatInvite").where("to", "=", myUsername);
+    const res = await db.collection("chatInvite");
 
     const querySnapshot = await res.get();
     querySnapshot.forEach((doc) => {
