@@ -8,14 +8,14 @@
   ],
   "routes": [
     {
-      "src": "/api/get-env", // Handle API requests
+      "src": "/api/get-env",
       "dest": "server.js"
     },
     {
-      "handle": "filesystem" // Serve static files
+      "handle": "filesystem"
     },
     {
-      "src": "/(.*)", // Catch-all for other routes
+      "src": "/(.*)",
       "dest": "/index.html"
     }
   ]
