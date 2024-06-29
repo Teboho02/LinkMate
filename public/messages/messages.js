@@ -45,6 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
         ).get();
         querySnapshot.forEach((doc) => {
           const userData = JSON.parse(JSON.stringify(doc.data()));
+          alert(userData);
 
           if (
             userData.To == localStorage.getItem("username") &&
