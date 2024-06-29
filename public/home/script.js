@@ -57,6 +57,8 @@ filterButton.addEventListener("click", async () => {
 
     profileContainer.innerHTML = "";
     createNavigationMenu();
+    checkRequests();
+    checkMessages();
     createForm(userPreferences);
     const res = await (findusers(minimumage, maximumAge, gender, intent));
 
