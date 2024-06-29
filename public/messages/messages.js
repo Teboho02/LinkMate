@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         const querySnapshot = await db.collection("Message")
-        .where("participants", "array-contains", username)
+        .where("participants", "array-contains", localStorage.getItem("username"))
         .get();
 
         querySnapshot.forEach((doc) => {
