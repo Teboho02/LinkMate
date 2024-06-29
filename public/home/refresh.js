@@ -23,9 +23,11 @@ async function checkRequests() {
 
     });
 
-    if(count > 0){
-        reqMenu.innerHTML = "Chat Request" + "(" + count + ")";
-    }
+    var chatReqElement = document.getElementById('chatReq').querySelector('a');
+    var icon = chatReqElement.querySelector('i');
+    chatReqElement.textContent = ' Chat Requests(1)'; // Set the text content first
+    chatReqElement.prepend(icon); // Prepend the icon back to maintain the structure
+    
 
     //change inner html of chat request
 
