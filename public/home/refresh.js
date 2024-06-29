@@ -26,13 +26,21 @@ async function checkMessages() {
     try {
         let unreadCount = 0;
         const res = await db.collection("Message").where("To", "==", myUsername);
-
+        let froms = [];
         const querySnapshot = await res.get();
         querySnapshot.forEach((doc) => {
-            unreadCount++;
+            let res = doc.data();
+            if (froms.includes(res.From)) {
+                console.log(`${value} is in the array.`);
+            } else {
+                froms.push(res.From);
+                console.log(`${value} is not in the array.`);
+            }
         });
+        
 
-        alert("unread ",unreadCount);
+        unreadCount = froms.length();
+
         if (unreadCount > 0) {
             console.log(`You have ${unreadCount} unread messages.`);
             var chatReqElement = document.getElementById('mess').querySelector('a');
