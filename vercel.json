@@ -1,5 +1,22 @@
 {
-  "rewrites": [
-    { "source": "/", "destination": "/index.html" }
+  "version": 2,
+  "builds": [
+    {
+      "src": "server.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/get-env", // Handle API requests
+      "dest": "server.js"
+    },
+    {
+      "handle": "filesystem" // Serve static files
+    },
+    {
+      "src": "/(.*)", // Catch-all for other routes
+      "dest": "/index.html"
+    }
   ]
 }
