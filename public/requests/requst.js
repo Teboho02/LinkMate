@@ -100,7 +100,7 @@ async function createFirstMessage(to) {
       From: localStorage.getItem("username"),
       To: to,
       message: "Chat request accepted",
-      time: "Jun 17 2024, 00:00:2000" // Example timestamp format
+      time: ["Jun 17 2024, 00:00:2000"] 
     });
     console.log("Message created successfully");
   } catch (e) {
