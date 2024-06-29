@@ -13,7 +13,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // API endpoint to get environment variables
 app.get('/api/getEnv', (req, res) => {
-  res.json({ apiUrl: process.env.API_URL });
+  res.json({ apiUrl: process.env.FIREBASE_PRIVATE_KEY });
 });
 
 // Catch-all handler to serve index.html for any route not handled above
