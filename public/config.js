@@ -2,8 +2,12 @@
 //require('dotenv').config();
 
 
+require('dotenv').config();
+
+console.log(process.env.FIREBASE_PRIVATE_KEY);
+
 const firebaseConfig = {
-  apiKey: "AIzaSyDFBwd8yFSrkKvZikexNWb8VMRozAe1mEk",
+  apiKey: process.env.FIREBASE_PRIVATE_KEY,
   authDomain: "find-my-patner.firebaseapp.com",
   projectId: "find-my-patner",
   storageBucket: "find-my-patner.appspot.com",
