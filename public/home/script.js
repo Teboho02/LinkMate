@@ -197,10 +197,10 @@ function createNavigationMenu() {
     const navMenu = document.createElement("ul");
 
     const links = [
-        { href: "../home/home.html", text: "Home", iconClass: "fa fa-home" },
-        { href: "../messages/contacts.html", text: "Messages", iconClass: "fa fa-envelope" },
-        { href: "../profile/profile.html", text: "Profile", iconClass: "fa fa-user" },
-        { href: "../requests/request.html", text: "Chat Requests", iconClass: "fa fa-comments" }
+        { href: "../home/home.html", text: "Home", iconClass: "fa fa-home"  ,id : "home"},
+        { href: "../messages/contacts.html", text: "Messages", iconClass: "fa fa-envelope", id : "mess"},
+        { href: "../profile/profile.html", text: "Profile", iconClass: "fa fa-user" , id : "prof"},
+        { href: "../requests/request.html", text: "Chat Requests", iconClass: "fa fa-comments", id :"chatReq" }
     ];
 
     links.forEach(link => {
@@ -210,7 +210,7 @@ function createNavigationMenu() {
 
         const icon = document.createElement("i");
         icon.className = link.iconClass;
-
+        listItem.id = link.id;
         anchor.appendChild(icon);
         anchor.appendChild(document.createTextNode(link.text));
 
