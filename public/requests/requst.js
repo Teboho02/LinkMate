@@ -106,6 +106,17 @@ async function createFirstMessage(to) {
   } catch (e) {
     console.error("Error creating message: ", e);
   }
+  try {
+    await db.collection("Message").add({
+      From: to,
+      To: localStorage.getItem("username"),
+      message: "Chat request accepted",
+      time: ["Jun 17 2024, 00:00:2000"] 
+    });
+    console.log("Message created successfully");
+  } catch (e) {
+    console.error("Error creating message: ", e);
+  }
 }
 
 getData();
