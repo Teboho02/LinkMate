@@ -23,11 +23,13 @@ async function checkRequests() {
 
     });
 
-    var chatReqElement = document.getElementById('chatReq').querySelector('a');
-    var icon = chatReqElement.querySelector('i');
-    chatReqElement.textContent = ' Chat Requests(1)'; // Set the text content first
-    chatReqElement.prepend(icon); // Prepend the icon back to maintain the structure
-    
+
+    if(count > 0){
+        var chatReqElement = document.getElementById('chatReq').querySelector('a');
+        var icon = chatReqElement.querySelector('i');
+        chatReqElement.textContent = ' Chat Requests(' + count + ')';
+        chatReqElement.prepend(icon); 
+    }
 
     //change inner html of chat request
 
