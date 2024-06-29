@@ -4,7 +4,7 @@
 async function fetchEnv() {
   const response = await fetch('/api/getEnv');
   const data = await response.json();
-  console.log(data);
+  console.log("data is :", data);
 
   return data.apiUrl;
 
@@ -13,6 +13,8 @@ async function fetchEnv() {
 const key = await fetchEnv();
 
 alert("the key is ",key);
+console.log("the key is ",key);
+
 
 
 console.log(process.env.FIREBASE_PRIVATE_KEY);
