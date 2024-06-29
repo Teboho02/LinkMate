@@ -39,11 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
     async function getMessages() {
       try {
 
-
-        const querySnapshot = await db.collection("Message")
-        .where("participants", "array-contains", localStorage.getItem("username"))
-        .get();
-
+        const querySnapshot = await db.collection("Message").get();
         querySnapshot.forEach((doc) => {
           const userData = JSON.parse(JSON.stringify(doc.data()));
 
