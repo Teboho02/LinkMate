@@ -1,7 +1,7 @@
 
 
 //check for new chat request. If available, update the DO, show 1
-
+const reqMenu = document.getElementById("chatReq");
 const myUsername = localStorage.getItem("username");
 
 checkRequests();
@@ -15,19 +15,20 @@ async function checkRequests() {
     const querySnapshot = await res.get();
     querySnapshot.forEach((doc) => {
         const userdata = doc.data();
-        console.log(userdata.to);
-        console.log(userdata.from);
 
         if(!userdata.Accepted && userdata.to === myUsername){
-            console.log("yes");
             count++;
         }
 
 
     });
 
-    console.log(count);
-    alert("count ",count);
+    if(count > 0){
+        reqMenu.innerHTML = "Chat Request" + "(" + count + ")";
+    }
+
+    //change inner html of chat request
+
 
 
 }
