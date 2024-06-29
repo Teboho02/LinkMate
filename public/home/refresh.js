@@ -1,7 +1,7 @@
-'use strict'
 
 const reqMenu = document.getElementById("chatReq");
 const myUsername = localStorage.getItem("username");
+const mes = document.getElementById("mess");
 
 checkRequests();
 checkMessages();
@@ -35,6 +35,10 @@ async function checkMessages() {
         alert("unread ",unreadCount);
         if (unreadCount > 0) {
             console.log(`You have ${unreadCount} unread messages.`);
+            var chatReqElement = document.getElementById('mess').querySelector('a');
+            var icon = chatReqElement.querySelector('i');
+            chatReqElement.textContent = 'Messages(' + unreadCount + ')';
+            chatReqElement.prepend(icon); 
         }
     } catch (error) {
         console.error("Error checking messages:", error);
