@@ -238,12 +238,13 @@ async function findusers(minimumage, maximumAge, gender, intent) {
     try {
         const results = [];
         const usersCollection = await db.collection("users");
-        let requirements = null;
-        if (gender == "all") {
-            requirements = usersCollection.where("age", ">", minimumage).where("age", "<", maximumAge);
-        } else {
-            requirements = usersCollection.where("age", ">", minimumage).where("age", "<", maximumAge).where("gender", "=", gender);
+        let requirements = usersCollection.where("age", ">", minimumage).where("age", "<", maximumAge);
+        
+        if (gender !== "all") {
+            requirements = requirements.where("gender", "=", gender);
         }
+        
+        
         let isValidUser = false;
         const querySnapshot = await requirements.get();
         querySnapshot.forEach((doc) => {
