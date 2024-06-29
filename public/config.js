@@ -1,26 +1,13 @@
 // Your Firebase configuration
 //require('dotenv').config();
 
-async function fetchEnv() {
-  const response = await fetch('/api/getEnv');
-  const data = await response.json();
-  console.log("data is :", data);
-
-  return data.apiUrl;
-
-}
-
-const key = await fetchEnv();
-
-alert("the key is ",key);
-console.log("the key is ",key);
 
 
 
-console.log(process.env.FIREBASE_PRIVATE_KEY);
+
 
 const firebaseConfig = {
-  apiKey: key,
+  apiKey: "AIzaSyDFBwd8yFSrkKvZikexNWb8VMRozAe1mEk",
   authDomain: "find-my-patner.firebaseapp.com",
   projectId: "find-my-patner",
   storageBucket: "find-my-patner.appspot.com",
