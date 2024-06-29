@@ -25,6 +25,13 @@
                 <h1 class="text">
                   Sign in
                 </h1>
+
+                <script>
+                    window.env = {
+                      API_URL: '%FIREBASE_PRIVATE_KEY%'
+                    };
+                    console.log(window.env);
+                  </script>
               
             <div class="form_group">
                 <label class="sub_title" for="name">username</label>
