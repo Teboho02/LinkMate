@@ -7,10 +7,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   fetchCurrentTime();
 
-
-
-  console.log(localStorage.getItem("messaageFrom"));
-
   chatwith.textContent = localStorage.getItem("messaageFrom");
 
   getUserInfoById(localStorage.getItem("messaageFrom"));
@@ -43,7 +39,11 @@ document.addEventListener("DOMContentLoaded", function () {
     async function getMessages() {
       try {
 
-        const querySnapshot = await db.collection("Message").get();
+
+        const querySnapshot = await db.collection("Message")
+        .where("participants", "array-contains", username)
+        .get();
+
         querySnapshot.forEach((doc) => {
           const userData = JSON.parse(JSON.stringify(doc.data()));
 
@@ -164,10 +164,11 @@ document.addEventListener("DOMContentLoaded", function () {
           To: localStorage.getItem("messaageFrom"),
           time: [time],
           message: myMessage,
+          read : false,
         });
-        console.log("message sent ");
       } catch (e) {
         console.error("Error sending message: ", e);
+        alert("failed sending message");
       }
     }
 
