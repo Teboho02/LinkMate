@@ -31,17 +31,17 @@ async function checkMessages() {
         querySnapshot.forEach((doc) => {
             let res = doc.data();
             if (froms.includes(res.From)) {
-                console.log(`${value} is in the array.`);
+                console.log(`${res.From} is in the array.`);
             } else {
                 froms.push(res.From);
-                console.log(`${value} is not in the array.`);
+                console.log(`${res.From} is not in the array.`);
             }
         });
         
 
         unreadCount = froms.length();
 
-        if (unreadCount > 0) {
+        if (unreadCount > 0) {  
             console.log(`You have ${unreadCount} unread messages.`);
             var chatReqElement = document.getElementById('mess').querySelector('a');
             var icon = chatReqElement.querySelector('i');
