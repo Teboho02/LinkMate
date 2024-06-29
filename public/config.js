@@ -1,6 +1,5 @@
-// Your Firebase configuration
-//require('dotenv').config();
 
+const key = [];
 
 
 const firebaseConfig = {
