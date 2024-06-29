@@ -100,7 +100,7 @@ async function createFirstMessage(to) {
       From: localStorage.getItem("username"),
       To: to,
       message: "Chat request accepted",
-      time: ["Jun 17 2024, 00:00:2000"] 
+      time: [fetchCurrentTime()] 
     });
     console.log("Message created successfully");
   } catch (e) {
@@ -111,7 +111,7 @@ async function createFirstMessage(to) {
       From: to,
       To: localStorage.getItem("username"),
       message: "Chat request accepted",
-      time: ["Jun 17 2024, 00:00:2000"] 
+      time: [fetchCurrentTime()] 
     });
     console.log("Message created successfully");
   } catch (e) {
@@ -120,3 +120,35 @@ async function createFirstMessage(to) {
 }
 
 getData();
+
+async function fetchCurrentTime() {
+  try {
+    const response = await fetch(
+      "https://worldtimeapi.org/api/timezone/Africa/Johannesburg"
+    );
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const data = await response.json();
+    const currentTime = new Date(data.datetime); // Use the 'datetime' field for local time
+
+    const formattedTime = formatDateTime(currentTime);
+
+    return formattedTime;
+  } catch (error) {
+    console.error("Error fetching time:", error);
+  }
+}
+
+function formatDateTime(date) {
+  const options = {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false,
+  };
+  return date.toLocaleString("en-US", options).replace(",", "");
+}
