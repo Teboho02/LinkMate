@@ -159,7 +159,6 @@ document.addEventListener("DOMContentLoaded", function () {
     async function uploadInformation(x) {
       try {
         let time = await fetchCurrentTime();
-        console.log(time);
 
         const docRef = await db.collection("Message").add({
           From: localStorage.getItem("username"),
