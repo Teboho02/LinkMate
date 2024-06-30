@@ -7,7 +7,9 @@ if(localStorage.getItem("username") != null){
    // window.location.href = "./profile/profile.html"
 }
 
-async function fetchEnv() {
+goog();
+
+async function goog() {
     const response = await fetch('/gemini');
     const data = await response.json();
   
