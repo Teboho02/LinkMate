@@ -107,12 +107,15 @@ async function createFirstMessage(to) {
     console.error("Error creating message: ", e);
   }
   try {
+    const time = [];
+    time.push(fetchCurrentTime());
     await db.collection("Message").add({
       From: to,
       To: localStorage.getItem("username"),
       message: "Chat request accepted",
-      time: [fetchCurrentTime()] 
+      time: time
     });
+
     console.log("Message created successfully");
   } catch (e) {
     console.error("Error creating message: ", e);
