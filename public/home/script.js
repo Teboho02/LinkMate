@@ -158,16 +158,22 @@ async function uploadInformation(user1, user2) {
 }
 
 function showAlert(message, type = 'info', duration = 3000) {
-    const alertBox = document.getElementById('alertBox');
-    alertBox.textContent = message;
+    // Create alert box
+    const alertBox = document.createElement('div');
     alertBox.className = 'alert ' + type;
-    alertBox.style.opacity = '1';
+    alertBox.textContent = message;
 
+    // Append alert box to the body
+    document.body.appendChild(alertBox);
+
+    // Set timeout to hide the alert box after the specified duration
     setTimeout(() => {
         alertBox.style.opacity = '0';
+        setTimeout(() => {
+            alertBox.remove();
+        }, 600); // Match the transition duration in the CSS
     }, duration);
 }
-
 
 
 async function getAge(userId) {
