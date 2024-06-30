@@ -4,7 +4,6 @@
 async function fetchEnv() {
   const response = await fetch('/api/getEnv');
   const data = await response.json();
-  console.log(data);
 
   return data.apiUrl
 
