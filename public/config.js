@@ -9,7 +9,7 @@ async function fetchEnv() {
 
 }
 
-const key = await fetchEnv();
+const key = fetchEnv();
 
 const firebaseConfig = {
   apiKey: key,
