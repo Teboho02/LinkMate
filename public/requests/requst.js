@@ -79,7 +79,8 @@ async function getPicture(username) {
     return profilePicture;
   } catch (e) {
     console.error("Error getting picture: ", e);
-    return ""; // Return default picture or handle error as needed
+    return ""; 
+    
   }
 }
 
