@@ -2,8 +2,14 @@ const express = require('express');
 const path = require('path');
 const dotenv = require('dotenv');
 const { GoogleGenerativeAI } = require("@google/generative-ai");
+const fetch = require('node-fetch');
 
 dotenv.config();
+
+// Ensure node-fetch is used globally by @google/generative-ai
+if (!globalThis.fetch) {
+  globalThis.fetch = fetch;
+}
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -34,7 +40,6 @@ app.get('/gemini', async (req, res) => {
   const story = await generateStory();
   res.json({ story });
 });
-
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
