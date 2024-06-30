@@ -100,7 +100,7 @@ async function createFirstMessage(to) {
       From: localStorage.getItem("username"),
       To: to,
       message: "Chat request accepted",
-      time: [fetchCurrentTime()] 
+      time: ["10"] 
     });
     console.log("Message created successfully");
   } catch (e) {
