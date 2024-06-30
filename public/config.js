@@ -1,9 +1,21 @@
 
-const key = [];
+
+
+async function fetchEnv() {
+  const response = await fetch('/api/getEnv');
+  const data = await response.json();
+  console.log(data);
+
+  return data.apiUrl
+
+}
+
+const key = fetchEnv();
+
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDFBwd8yFSrkKvZikexNWb8VMRozAe1mEk",
+  apiKey: key,
   authDomain: "find-my-patner.firebaseapp.com",
   projectId: "find-my-patner",
   storageBucket: "find-my-patner.appspot.com",
