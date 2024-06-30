@@ -17,7 +17,7 @@ async function checkRequests() {
     if(count > 0){
         var chatReqElement = document.getElementById('chatReq').querySelector('a');
         var icon = chatReqElement.querySelector('i');
-        chatReqElement.textContent = ' Chat Requests(' + count + ')';
+        chatReqElement.textContent = 'Notification(' + count + ')';
         chatReqElement.prepend(icon); 
     }
 }

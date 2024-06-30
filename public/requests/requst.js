@@ -1,5 +1,4 @@
 async function getData() {
-  console.log("running");
   try {
     const myUsername = localStorage.getItem("username");
     let req = [];
@@ -18,7 +17,7 @@ async function getData() {
     if (req.length > 0) {
       const cardContainer = document.querySelector(".card__content");
 
-      req.forEach(async (userData) => {
+      req.forEach(async (userData, index) => {
         const senderPicture = await getPicture(userData.from);
 
         const card = document.createElement("div");
@@ -36,12 +35,10 @@ async function getData() {
         buttonAccept.textContent = "Accept";
 
         buttonAccept.addEventListener("click", async () => {
-          console.log("Accepted");
           ids.forEach(async (id) => {
             await update(id);
             await createFirstMessage(userData.from);
           });
-          // After accepting, remove the card from UI
           card.remove();
         });
 
@@ -50,7 +47,10 @@ async function getData() {
         
         
         buttonReject.addEventListener("click", async () => {
+
           console.log("Rejected");
+
+          deleteChatInvite(ids[index]);
 
           card.remove();
         });
@@ -93,6 +93,16 @@ async function update(id) {
     console.error("Error updating document: ", e);
   }
 }
+
+async function deleteChatInvite(docId) {
+  try {
+    await db.collection("chatInvite").doc(docId).delete();
+    console.log("Document successfully deleted!");
+  } catch (error) {
+    console.error("Error removing document: ", error);
+  }
+}
+
 
 async function createFirstMessage(to) {
   const time = await fetchCurrentTime();
