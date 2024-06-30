@@ -7,6 +7,15 @@ if(localStorage.getItem("username") != null){
    // window.location.href = "./profile/profile.html"
 }
 
+async function fetchEnv() {
+    const response = await fetch('/gemini');
+    const data = await response.json();
+  
+    console.log("response from gemini :",data)
+    return data;
+  
+  }
+  
 
 async function getData(username, password) {
 
