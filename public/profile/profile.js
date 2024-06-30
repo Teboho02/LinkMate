@@ -18,7 +18,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     let profileString = "";
 
-
     const username = localStorage.getItem("username");
 
     const myData = showInfo(username);
@@ -26,7 +25,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     
-    //check if profile exist for the user
 
     profilePicture.addEventListener("click", function() {
         fileInput.click();
@@ -115,7 +113,9 @@ document.addEventListener("DOMContentLoaded", function() {
         const docRef = await db.collection("userInfo").doc(localStorage.getItem("username")).update({
             profile_picture : profileString
         });
-        console.log("successfully updated "  );
+
+        alert("successfully updated");
+        //console.log("successfully updated "  );
     } catch (e) {
         console.error("Error adding document: ", e);
     }
@@ -161,18 +161,14 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-
-
 async function showInfo(username) {
     try {
         const querySnapshot = await db.collection("users").get();
 
         querySnapshot.forEach((doc) => {
             const userData = doc.data();
-         
 
             let datax= JSON.parse(JSON.stringify(doc.data()));
-
 
             if(datax.username == username){
                 
@@ -180,15 +176,12 @@ async function showInfo(username) {
                     Name : datax.profile_name,
                     age : datax.age,
                     gender : datax.gender,
-                    
-                }
 
+                }
                 nameLabel.innerHTML = "Name: " + myData.Name;
                 ageLabel.innerHTML = "Age: " + myData.age;
                 return myData;
-
             }
-
 
         });
 
