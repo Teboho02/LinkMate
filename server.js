@@ -32,8 +32,9 @@ app.get('/api/getEnv', (req, res) => {
 
 app.get('/gemini', async (req, res) => {
   const story = await generateStory();
-  res.send(story);
+  res.json({ story });
 });
+
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
