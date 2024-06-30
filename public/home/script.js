@@ -9,33 +9,8 @@ const minAge = document.getElementById('minAge');
 const maxAge = document.getElementById('maxAge');
 const filterButton = document.getElementById('filterButton');
 
-// frontend.js
-async function fetchUserData() {
-    try {
-        const response = await fetch('http://localhost:3000/api/users');
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        const data = await response.json();
-        console.log(data); // { name: "starr", age: 10 }
-    } catch (error) {
-        console.error('Error fetching data:', error);
-    }
-}
-
-fetchUserData();
 
 
-function encryptData(plainText, secretKey) {
-    const encryptedData = CryptoJS.AES.encrypt(plainText, secretKey).toString();
-    return encryptedData;
-}
-
-function decryptData(encryptedData, secretKey) {
-    const bytes = CryptoJS.AES.decrypt(encryptedData, secretKey);
-    const decryptedText = bytes.toString(CryptoJS.enc.Utf8);
-    return decryptedText;
-}
 
 
 
@@ -175,6 +150,8 @@ async function uploadInformation(user1, user2) {
             to: user2,
             date: new Date().toISOString()
         });
+
+        alert("invitation sent");
     } catch (e) {
         console.error("Error adding document: ", e);
     }
@@ -322,7 +299,7 @@ function createForm(userPreferences) {
     const filterButton = document.createElement('button');
     filterButton.id = 'filterButton';
     filterButton.className = 'btn';
-    filterButton.textContent = 'Apply Filter';
+    filterButton.textContent = 'Filter';
 
     filterButton.addEventListener("click", async () => {
 

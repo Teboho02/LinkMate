@@ -14,16 +14,6 @@ app.get('/api/getEnv', (req, res) => {
 });
 
 
-app.get('/api/time', (req, res) => {
-
-    let t = {
-        a : 5,
-        b : 3
-    }
-    res.json(t);
-
-});
-  
   
 
 app.get('*', (req, res) => {
@@ -33,5 +23,19 @@ app.get('*', (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
+// function encryptData(plainText, secretKey) {
+//   const encryptedData = CryptoJS.AES.encrypt(plainText, secretKey).toString();
+//   return encryptedData;
+// }
+
+// function decryptData(encryptedData, secretKey) {
+//   const bytes = CryptoJS.AES.decrypt(encryptedData, secretKey);
+//   const decryptedText = bytes.toString(CryptoJS.enc.Utf8);
+//   return decryptedText;
+// }
+
+
+
 
 
