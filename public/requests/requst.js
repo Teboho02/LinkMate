@@ -95,19 +95,21 @@ async function update(id) {
 }
 
 async function createFirstMessage(to) {
+  const time = await fetchCurrentTime();
+
   try {
     await db.collection("Message").add({
       From: localStorage.getItem("username"),
       To: to,
       message: "Chat request accepted",
-      time: ["10"] 
+      time: [time] 
     });
     console.log("Message created successfully");
   } catch (e) {
     console.error("Error creating message: ", e);
   }
   try {
-    const time = fetchCurrentTime();
+    const time = await fetchCurrentTime();
     await db.collection("Message").add({
       From: to,
       To: localStorage.getItem("username"),
