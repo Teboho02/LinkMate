@@ -10,12 +10,12 @@
   "scope": "/",
   "icons": [
     {
-      "src": "https://teboho02.github.io/test/profile.png",
+      "src": "https://teboho02.github.io/test/img.jpg",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "https://teboho02.github.io/test/profile.png",
+      "src": "https://teboho02.github.io/test/img.jpg",
       "sizes": "512x512",
       "type": "image/png"
     }
