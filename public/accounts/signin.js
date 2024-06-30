@@ -6,6 +6,28 @@ if(localStorage.getItem("username") != null){
    //TODOs uncomment later
    // window.location.href = "./profile/profile.html"
 }
+fun();
+async function fun(){
+
+    try {
+        const response = await fetch('/api/time', {
+          method: 'GET',
+
+        });
+    
+        const result = await response.json();
+        if (response.ok) {
+          console.log(result);
+        } else {
+          console.error('Error:', result.error);
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    
+    
+
+}
 
 
 

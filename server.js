@@ -14,6 +14,17 @@ app.get('/api/getEnv', (req, res) => {
 });
 
 
+app.get('/api/time', (req, res) => {
+
+    let t = {
+        a : 5,
+        b : 3
+    }
+    res.json(t);
+
+});
+  
+  
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
