@@ -151,11 +151,24 @@ async function uploadInformation(user1, user2) {
             date: new Date().toISOString()
         });
 
-        alert("invitation sent");
+        showAlert('Invitation sent', 'info', 3000);
     } catch (e) {
         console.error("Error adding document: ", e);
     }
 }
+
+function showAlert(message, type = 'info', duration = 3000) {
+    const alertBox = document.getElementById('alertBox');
+    alertBox.textContent = message;
+    alertBox.className = 'alert ' + type;
+    alertBox.style.opacity = '1';
+
+    setTimeout(() => {
+        alertBox.style.opacity = '0';
+    }, duration);
+}
+
+
 
 async function getAge(userId) {
     try {
