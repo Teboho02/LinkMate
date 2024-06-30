@@ -167,9 +167,8 @@
   
   /* Change the link color to #111 (black) on hover */
   li a:hover {
-    background-color: #111;
+    background-color: #17bd6a;
   }
-  
   .active {
     background-color: #04AA6D;
   }
