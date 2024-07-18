@@ -162,6 +162,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 async function showInfo(username) {
+    //on login show the user's profile information
     try {
         const querySnapshot = await db.collection("users").get();
 
